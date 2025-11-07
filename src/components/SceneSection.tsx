@@ -1,5 +1,8 @@
 "use client";
 
+import { useRef } from "react";
+import { useIsomorphicLayoutEffect } from "@/src/lib/useIsomorphicLayoutEffect";
+
 type SceneSectionProps = {
     title: string;
     text: string;
@@ -7,6 +10,12 @@ type SceneSectionProps = {
 };
 
 export default function SceneSection({ title, text, id }: SceneSectionProps) {
+    const sectionRef = useRef<HTMLElement | null>(null);
+
+    useIsomorphicLayoutEffect(() => {
+        // hier GSAP
+    }, [])
+
     return (
         <section
         id={id}

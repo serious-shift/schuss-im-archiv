@@ -1,4 +1,4 @@
-import SceneSection from "@/components/SceneSection";
+import SceneSection from "@/src/components/SceneSection";
 
 export default function Home() {
   return (
