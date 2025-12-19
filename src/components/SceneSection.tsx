@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { useIsomorphicLayoutEffect } from "@/src/lib/useIsomorphicLayoutEffect";
 import { SceneContent } from "@/src/types";
+import InvestigationView from "./game/InvestigationView";
 
 type SceneSectionProps = {
     title: string;
@@ -84,6 +85,9 @@ export default function SceneSection({ title, content, id, video }: SceneSection
         })
     };
 
+    const investigationBlock = content.find(block => block.type === 'investigation');
+    const otherContent = content.filter(block => block.type !== 'investigation');
+
     return (
         <section
         ref={sectionRef}
@@ -101,13 +105,16 @@ export default function SceneSection({ title, content, id, video }: SceneSection
                     className="absolute top-0 left-0 w-full h-screen object-cover z-0">
                     <source src={video} type="video/mp4" />
                     </video>
-            )}
+                )}
+                {investigationBlock && investigationBlock.type === 'investigation' && (
+                    <InvestigationView block={investigationBlock} />
+                )}
             </div>
             
-            <div className="sticky top-0 h-screen w-full flex items-center justify-center">
-                <div className="max-w-2xl text-left space-y-6 text-white">
+            <div className="sticky top-0 h-screen w-full flex items-center justify-center pointer-events-none">
+                <div className="max-w-2xl text-left space-y-6 text-white pointer-events-auto">
                     <h2 className="anim-child text-3xl md:text-5xl font-semibold text-center">{title}</h2>
-                    {content.map((block, index) => {
+                    {otherContent.map((block, index) => {
                         if (block.type === 'narrative') {
                             return (
                                 <p key={index} className="anim-child text-lg md:text-xl text-gray-300 italic">

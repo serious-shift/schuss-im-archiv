@@ -12,7 +12,25 @@ export type Chapter = {
     scenes: Scene[];
 }
 
-export type SceneContent = NarrativeBlock | DialogueBlock | NavigationBlock | nullBlock;
+export type SceneContent = NarrativeBlock | DialogueBlock | NavigationBlock | nullBlock | InvestigationBlock;
+
+export type InvestigationBlock = {
+    type: 'investigation';
+    backgroundImage: string;
+    hotspots: Hotspot[];
+}
+
+export type Hotspot = {
+    id: string;
+    title: string;
+    description: string;
+    image: string;
+    required: boolean;
+    position: {
+        x: number;
+        y: number;
+    }
+}
 
 export type NavigationBlock = {
     type : 'navigation';
