@@ -3,6 +3,10 @@
 import { useState, useEffect, useCallback } from "react";
 import { Chapter, Scene } from "@/src/types";
 import SceneSection from "@/src/components/SceneSection";
+import gsap from "gsap";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+
+gsap.registerPlugin(ScrollToPlugin);
 
 type ChapterClientProps = {
     chapterData: Chapter;
@@ -13,7 +17,6 @@ export default function ChapterClient({ chapterData }: ChapterClientProps) {
     const [visibleScenes, setVisibleScenes] = useState<Scene[]>([]);
 
     useEffect(() => {
-        // Initial first scene
         if (chapterData && chapterData.scenes.length > 0) {
             setVisibleScenes([chapterData.scenes[0]]);
         }
@@ -26,10 +29,21 @@ export default function ChapterClient({ chapterData }: ChapterClientProps) {
         if (targetScene) {
             // Add the new scene to the visible ones
             setVisibleScenes(prevScenes => {
-                // Prevent adding duplicates
                 if (prevScenes.find(s => s.id === targetSceneId)) {
+                    (async () => {
+                        const scroller = document.querySelector("#smooth-wrapper");
+                        gsap.to(scroller, {
+                            duration: 1.5,
+                            scrollTo: { y: `#${targetSceneId}`, offsetY: 100 },
+                            ease: "power2.inOut",
+                        });
+                    })();
                     return prevScenes;
                 }
+                // Prevent adding duplicates
+                //if (prevScenes.find(s => s.id === targetSceneId)) {
+                //    return prevScenes;
+                //}
                 return [...prevScenes, targetScene];
             });
         }
@@ -76,6 +90,7 @@ export default function ChapterClient({ chapterData }: ChapterClientProps) {
                     key={scene.id}
                     id={scene.id}
                     title={scene.title}
+                    showTitleBanner={scene.showTitleBanner}
                     content={scene.content}
                     video={scene.video}
                     onNavigate={handleNavigate}

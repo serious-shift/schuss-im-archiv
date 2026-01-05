@@ -1,6 +1,7 @@
 export type Scene = {
     id: string;
     title: string;
+    showTitleBanner?: boolean;
     image?: string;
     video?: string;
     content: SceneContent[];

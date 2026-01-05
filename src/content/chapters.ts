@@ -8,6 +8,7 @@ export const chapters: Chapter[] = [
             {
                 id: "scene-0",
                 title: "Rolle als Ermittler:in",
+                showTitleBanner: true,
                 video: "/videos/scene-0-transition-clean.mp4",
                 content: [
                     {

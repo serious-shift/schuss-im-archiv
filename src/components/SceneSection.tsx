@@ -11,6 +11,7 @@ import DecisionBlockView from "./game/DecisionBlockView";
 
 type SceneSectionProps = {
     title: string;
+    showTitleBanner?: boolean;
     content: SceneContent[];
     id: string;
     video?: string; 
@@ -18,7 +19,7 @@ type SceneSectionProps = {
     onSceneComplete: (sceneId: string) => void;
 };
 
-export default function SceneSection({ title, content, id, video, onNavigate, onSceneComplete }: SceneSectionProps) {
+export default function SceneSection({ title, content, showTitleBanner, id, video, onNavigate, onSceneComplete }: SceneSectionProps) {
     const sectionRef = useRef<HTMLElement | null>(null);
     const videoRef = useRef<HTMLVideoElement | null>(null);
 
@@ -106,12 +107,15 @@ export default function SceneSection({ title, content, id, video, onNavigate, on
             id={id}
             className="relative h-[300vh]"
         >
-            <div className="sticky top-0 h-screen w-full">
+            {/* --- EIN EINZIGER STICKY CONTAINER FÜR ALLES --- */}
+            <div className="sticky top-0 h-screen w-full overflow-hidden">
+                
+                {/* Hintergrund-Ebene (Video oder Ermittlung) */}
                 {video && (
                     <video
                         ref={videoRef}
                         src={video}
-                        className="w-full h-full object-cover"
+                        className="absolute top-0 left-0 w-full h-full object-cover"
                         playsInline
                         muted
                         preload="metadata"
@@ -123,27 +127,34 @@ export default function SceneSection({ title, content, id, video, onNavigate, on
                         onComplete={() => onSceneComplete(id)} 
                     />
                 )}
-            </div>
 
-            <div className="sticky top-0 h-screen w-full flex items-center justify-center pointer-events-none">
-                <div className="max-w-2xl text-left space-y-6 text-white pointer-events-auto p-8">
-                    <h2 className="anim-child text-4xl font-bold">{title}</h2>
-                    {otherContent.map((block, index) => {
-                        if (!block) return null;
-                        switch (block.type) {
-                            case 'narrative':
-                                return <NarrativeBlockView key={index} block={block} />;
-                            case 'dialogue':
-                                return <DialogueBlockView key={index} block={block} />;
-                            case 'navigation':
-                                return <NavigationBlockView key={index} block={block} onNavigate={onNavigate} />;
-                            case 'decision':
-                                return <DecisionBlockView key={index} block={block} onNavigate={onNavigate} />;
-                            default:
-                                return null;
-                        }
-                    })}
+                {/* Text-Ebene (zentrierter Inhalt) */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div className="max-w-2xl text-left space-y-6 text-white pointer-events-auto p-8">
+                        {otherContent.map((block, index) => {
+                            if (!block) return null;
+                            switch (block.type) {
+                                case 'narrative':
+                                    return <NarrativeBlockView key={index} block={block} />;
+                                case 'dialogue':
+                                    return <DialogueBlockView key={index} block={block} />;
+                                case 'navigation':
+                                    return <NavigationBlockView key={index} block={block} onNavigate={onNavigate} />;
+                                case 'decision':
+                                    return <DecisionBlockView key={index} block={block} onNavigate={onNavigate} />;
+                                default:
+                                    return null;
+                            }
+                        })}
+                    </div>
                 </div>
+
+                {/* UI-Ebene (Titel-Banner) */}
+                {showTitleBanner && (
+                    <div className="title-banner z-10">
+                        <h3>{title}</h3>
+                    </div>
+                )}
             </div>
         </section>
     );
