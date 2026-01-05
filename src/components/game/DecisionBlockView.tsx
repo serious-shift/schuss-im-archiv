@@ -6,12 +6,51 @@ type DecisionBlockViewProps = {
 };
 
 export default function DecisionBlockView({ block, onNavigate }: DecisionBlockViewProps) {
+    // determine display style
+    const isQuestionStyle = block.displayAs === 'question';
+    const isImageTileStyle = block.choices.some(choice => choice.image);
+
+    if (isImageTileStyle) {
+        return (
+            <div className="anim-child text-center p-4 space-y-8">
+                <p className="text-xl italic text-gray-300">
+                    {block.question}
+                </p>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                    {block.choices.map((choice, index) => (
+                        <button
+                            key={index}
+                            onClick={() => onNavigate(choice.targetSceneId)}
+                            className="relative aspect-square bg-gray-900/50 border-2 border-gray-700 rounded-lg overflow-hidden group transition-all duration-300  hover:border-red-500 hover:scale-105 focus:outline-none focus:border-red-500"
+                            aria-label={choice.text}
+                        >
+                            {choice.image && (
+                                <img
+                                    src={choice.image}
+                                    alt={choice.text}
+                                    className="opacity-60 group-hover:opacity-100 transition-opacity duration-300"
+                                />
+                            )}
+                            <div className="absolute inset-0 flex items-center justify-center bg-black/50 group-hover:bg-black/30 transition-colors duration-300">
+                                <span className="text-white font-bold text-center p-2">{choice.text}</span>
+                            </div>
+                        </button>
+                    ))}
+                </div>
+            </div>
+        )
+    }
+
+    const containerClasses = isQuestionStyle
+        ? "anim-child text-left p-4 space-y-3"
+        : "anim-child text-center p-4 space-y-6";
+
     return (
-        <div className="anim-child text-center p-4 space-y-6">
+        <div className={containerClasses}>
             <p className="text-xl italic text-gray-300">
                 {block.question}
             </p>
-            <div className="flex flex-col md:flex-row justify-center gap-4">
+            <div className={isQuestionStyle ? "flex flex-col items-start gap-2" : "flex flex-col md:flex-row justify-center gap-4"}>
                 {block.choices.map((choice, index) => (
                     <button
                         key={index}

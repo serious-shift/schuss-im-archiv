@@ -60,10 +60,12 @@ export type DialogueLine = {
 export type Choice = {
     text: string;
     targetSceneId: string;
+    image?: string;
 };
 
 export type DecisionBlock = {
     type: "decision";
     question: string;
     choices: Choice[];
+    displayAs?: 'decision' | 'question';
 }

@@ -105,17 +105,22 @@ export const chapters: Chapter[] = [
                         choices: [
                             {
                                 text: "Dr. Petra Haas (DNA des Haars am Ärmel)",
-                                targetSceneId: "scene-2-path-a"
+                                targetSceneId: "scene-2-path-a",
+                                image: '/images/Pistole_Prop.png' 
                             },
                             {
                                 text: "Lena Bergmann (Schriftuntersuchung des Zettels auf Schreibtisch)",
-                                targetSceneId: "scene-2-path-b"
+                                targetSceneId: "scene-2-path-b",
+                                image: '/images/Spendenblatt.png'
                             },
                             {
                                 text: "Ralf König (Audiospur auf Hellers Handy)",
-                                targetSceneId: "scene-2-path-c"
+                                targetSceneId: "scene-2-path-c",
+                                image: '/images/Pistole_Prop.png',
+
                             }
-                        ]
+                        ],
+                        displayAs: 'decision'
                     }
                 ]
             },
@@ -146,7 +151,136 @@ export const chapters: Chapter[] = [
                         lines: [
                             {
                                 character: "Ermittler:in",
-                                text: "Coming soon...",
+                                text: "Herr König, danke, dass Sie sich Zeit genommen haben. Es geht um das Audiomaterial auf dem Handy von Dr. Heller.",
+                            },
+                            {
+                                character: "Ralf König",
+                                text: "Ich habe davon gehört. Meine Redaktion hat mich direkt informiert. Aber … ich verstehe das nicht. Ich war das nicht."
+                            },
+                            {
+                                character: "Ermittler:in",
+                                text: "Auf der Aufnahme sind Sie klar zu hören. Ihre Stimme, Ihre Wortwahl – alles passt. Wie erklären Sie sich das?"
+                            },
+                            {
+                                character: "Ralf König",
+                                text: "Ich war gestern nicht einmal in Hellers Büro. Ich wollte ihn nur nach der Arbeit zum Essen abholen. Wir hatten locker 18:30 ausgemacht. Aber er ist nicht rausgekommen. Irgendwas war komisch."
+                            },
+                            {
+                                character: "Ermittler:in",
+                                text: "Die Aufnahme auf seinem Handy klingt deutlich schärfer. Fast wie eine Warnung. --- HIER AUDIO EINFÜGERN --- Du weißt genau, dass es so nicht weitergehen kann. Irgendwann muss Schluss sein, verstehst du? Und wenn du das nicht einsehen willst… dann musst du eben die Konsequenzen tragen."
+                            },
+                            {
+                                character: "Ralf König",
+                                text: "Was… zur Hölle? Das… das habe ich nie gesagt. Das ist nicht meine Nachricht. Also, nicht so."
+                            },
+                            {
+                                character: "Ermittler:in",
+                                text: "Sind Sie sicher, dass Sie nicht in der Hitze des Moments—"
+                            },
+                            {
+                                character: "Ralf König",
+                                text: "Nein! Ich meine… ja, es ist meine Stimme. Aber ich schwöre Ihnen, das war nie der Inhalt. Ich habe gesagt, dass ich draußen auf ihn warte. Mehr nicht."
+                            },
+                        ]
+                    }
+                ]
+            },
+            {
+                id: "scene-2-path-c-question",
+                title: "Verhör: Ralf König (Freund & Journalist) - Frage",
+                content: [
+                    {
+                        type: 'decision',
+                        question: "Was möchten Sie Ralf König fragen?",
+                        choices: [
+                            {
+                                text: "Würden Sie sich bereit erklären, uns Ihr Handy zu geben? Wir lassen beide Geräte forensisch untersuchen.",
+                                targetSceneId: "scene-2-path-c-q1"
+                            },
+                            {
+                                text: "Herr König, welche Themen decken Sie aktuell in Ihrer journalistischen Arbeit ab?",
+                                targetSceneId: "scene-2-path-c-q2"
+                            },
+                            {
+                                text: "Wissen Sie noch, was genau Sie Heller in Ihrer Sprachnachricht sagen wollten – also im Original?",
+                                targetSceneId: "scene-2-path-c-q3"
+                            },
+                        ]
+                    }
+                ]
+            },
+            {
+                id: "scene-2-path-c-q1",
+                title: "Interaktive Frage 1",
+                content: [
+                    {
+                        type: 'dialogue',
+                        lines: [
+                            {
+                                character: "Ermittler:in",
+                                text: "Würden Sie sich bereit erklären, uns Ihr Handy zu geben? Wir lassen beide Geräte forensisch untersuchen.",
+                            },
+                            {
+                                character: "Ralf König",
+                                text: "Natürlich. Ich habe nichts zu verbergen. Nehmen Sie’s – checken Sie, wann ich was aufgenommen habe. Das Original klingt völlig anders, da bin ich mir sicher."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: "scene-2-path-c-q2",
+                title: "Interaktive Frage 2",
+                content: [
+                    {
+                        type: 'dialogue',
+                        lines: [
+                            {
+                                character: "Ermittler:in",
+                                text: "Herr König, welche Themen decken Sie aktuell in Ihrer journalistischen Arbeit ab?",
+                            },
+                            {
+                                character: "Ralf König",
+                                text: "Vor allem politische Verflechtungen, Parteispenden, intransparente Förderstrukturen. Das Archiv war da eine wichtige Quelle – und Heller manchmal mein Türöffner."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: "scene-2-path-c-q3",
+                title: "Interaktive Frage 3",
+                content: [
+                    {
+                        type: 'dialogue',
+                        lines: [
+                            {
+                                character: "Ermittler:in",
+                                text: "Wissen Sie noch, was genau Sie Heller in Ihrer Sprachnachricht sagen wollten – also im Original?",
+                            },
+                            {
+                                character: "Ralf König",
+                                text: "Ja. Ich hab gesagt, dass ich draußen warte und mich auf den Abend freue. Dass er sich nicht stressen soll, falls er noch in einem Gespräch steckt. Ganz neutral. Keine Anspielungen, kein Druck. Es war einfach eine nette Nachricht. Und ich weiß, dass sie harmlos war. Ich hab sie vor dem Absenden sogar nochmal angehört – aus Routine."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: "scene-2-path-c-decision",
+                title: "Glauben schenken oder nicht?",
+                content: [
+                    {
+                        type: 'decision',
+                        question: "Das Gespräch mit Ralf König hat neue Fragen aufgeworfen. Die Audioaufnahme steht im Widerspruch zu seinen Aussagen – doch wo liegt die Wahrheit?",
+                        choices: [
+                            {
+                                text: "→ Tonspur forensisch prüfen lassen. Die Aufnahme auf Dr. Hellers Handy wird an eine spezialisierte Abteilung zur technischen Analyse übergeben.",
+                                targetSceneId: "scene-3-c-a-tonspur-pruefen"
+                            },
+                            {
+                                text: "→ Tonspur forensisch prüfen lassen. Die Aufnahme auf Dr. Hellers Handy wird an eine spezialisierte Abteilung zur technischen Analyse übergeben.",
+                                targetSceneId: "scene-3-c-b-veröffentlichungen-durchleuchten"
                             }
                         ]
                     }

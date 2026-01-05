@@ -1,6 +1,6 @@
 import { chapters } from "@/src/content/chapters";
-import SceneSection from "@/src/components/SceneSection";
 import { notFound } from "next/navigation";
+import ChapterClient from "@/src/components/ChapterClient";
 
 type ChapterPageProps = {
     params: {
@@ -11,24 +11,13 @@ type ChapterPageProps = {
 export default async function ChapterPage({ params }: ChapterPageProps) {
     const { chapterId } = await params;
 
-    // find chapter by id
-    const chapter = chapters.find((c) => c.id === chapterId);
-    
-    if (!chapter) {
-        notFound();
+    // find chapter on server side
+    const chapterData = chapters.find((c) => c.id == chapterId);
+
+    if (!chapterData) {
+        return notFound();
     }
 
-    return (
-        <main>
-            {chapter.scenes.map((scene) => (
-                <SceneSection
-                    key={scene.id}
-                    id={scene.id}
-                    title={scene.title}
-                    content={scene.content}
-                    video={scene.video}
-                />
-            ))}
-        </main>
-    );
+    // get chapter client component
+    return <ChapterClient chapterData={chapterData} />;
 }
