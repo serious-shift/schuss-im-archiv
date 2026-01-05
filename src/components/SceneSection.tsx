@@ -83,6 +83,28 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
                             once: true
                         })
                     }
+
+                    const narrativeContainer = sectionEl.querySelector("#narrative-scroll-container");
+                    const narrativeTexts = sectionEl.querySelector("#narrative-texts");
+
+                    if (narrativeContainer && narrativeTexts) {
+                        const containerHeight = narrativeContainer.clientHeight;
+                        const textHeight = narrativeTexts.clientHeight;
+
+                        if (textHeight > containerHeight) {
+                            gsap.to(narrativeTexts, {
+                                y: -(textHeight - containerHeight), // 'y' ist performanter als 'top'
+                                ease: "none",
+                                scrollTrigger: {
+                                    trigger: sectionEl,
+                                    start: "top top",
+                                    // Die Animation läuft, bis der untere Rand der Sektion den oberen Rand des Viewports erreicht
+                                    end: "bottom top", 
+                                    scrub: true,
+                                }
+                            });
+                        }
+                    }
                 }, sectionEl);
             })();
         };
@@ -129,23 +151,25 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
                 )}
 
                 {/* Text-Ebene (zentrierter Inhalt) */}
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                    <div className="max-w-2xl text-left space-y-6 text-white pointer-events-auto p-8">
-                        {otherContent.map((block, index) => {
-                            if (!block) return null;
-                            switch (block.type) {
-                                case 'narrative':
-                                    return <NarrativeBlockView key={index} block={block} />;
-                                case 'dialogue':
-                                    return <DialogueBlockView key={index} block={block} />;
-                                case 'navigation':
-                                    return <NavigationBlockView key={index} block={block} onNavigate={onNavigate} />;
-                                case 'decision':
-                                    return <DecisionBlockView key={index} block={block} onNavigate={onNavigate} />;
-                                default:
-                                    return null;
-                            }
-                        })}
+                <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 pointer-events-none">
+                    <div className="max-w-prose mx-auto">
+                        <div className="anim-container w-full space-y-4 text-white pointer-events-auto">
+                            {otherContent.map((block, index) => {
+                                if (!block) return null;
+                                switch (block.type) {
+                                    case 'narrative':
+                                        return <NarrativeBlockView key={index} block={block} />;
+                                    case 'dialogue':
+                                        return <DialogueBlockView key={index} block={block} />;
+                                    case 'decision':
+                                        return <DecisionBlockView key={index} block={block} onNavigate={onNavigate} />;
+                                    case 'navigation':
+                                        return <NavigationBlockView key={index} block={block} onNavigate={onNavigate} />;
+                                    default:
+                                        return null;
+                                }
+                            })}
+                        </div>
                     </div>
                 </div>
 

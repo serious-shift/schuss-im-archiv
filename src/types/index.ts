@@ -45,7 +45,7 @@ export type nullBlock = {
 
 export type NarrativeBlock = {
     type: "narrative";
-    text: string;
+    text: string | string[];
 }
 
 export type DialogueBlock = {
