@@ -9,6 +9,12 @@ import DialogueBlockView from "./game/DialogueBlockView";
 import NavigationBlockView from "./game/NavigationBlockView";
 import DecisionBlockView from "./game/DecisionBlockView";
 
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { clear } from "console";
+
+gsap.registerPlugin(ScrollTrigger);
+
 type SceneSectionProps = {
     title: string;
     showTitleBanner?: boolean;
@@ -38,11 +44,7 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
         let ctx: gsap.Context | undefined;
 
         const setupAnimations = () => {
-            (async () => {
-                const { default: gsap } = await import("gsap");
-                const { ScrollTrigger } = await import("gsap/ScrollTrigger");
-                gsap.registerPlugin(ScrollTrigger);
-
+            const timeoutId = setTimeout(() => {
                 ctx = gsap.context(() => {
                     // Animation for text elements
                     const elementsToAnimate = gsap.utils.toArray(sectionEl.querySelectorAll('.anim-child'));
@@ -96,9 +98,9 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
                                 y: -(textHeight - containerHeight), // 'y' ist performanter als 'top'
                                 ease: "none",
                                 scrollTrigger: {
+                                    scroller: "#smooth-wrapper",
                                     trigger: sectionEl,
                                     start: "top top",
-                                    // Die Animation läuft, bis der untere Rand der Sektion den oberen Rand des Viewports erreicht
                                     end: "bottom top", 
                                     scrub: true,
                                 }
@@ -106,7 +108,11 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
                         }
                     }
                 }, sectionEl);
-            })();
+            }, 0);
+            return () => {
+                clearTimeout(timeoutId);
+                ctx?.revert();
+            };
         };
 
         if (videoEl) {
@@ -114,10 +120,6 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
         } else {
             setupAnimations();
         }
-
-        return () => {
-            ctx?.revert();
-        };
     }, [video, isInteractive, onSceneComplete, id]);
 
     const investigationBlock = content.find(block => block.type === 'investigation');
