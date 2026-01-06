@@ -11,7 +11,6 @@ import DecisionBlockView from "./game/DecisionBlockView";
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { clear } from "console";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -35,91 +34,92 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
     )
 
     useIsomorphicLayoutEffect(() => {
-        const videoEl = videoRef.current;
         const sectionEl = sectionRef.current;
-        const scroller = document.querySelector("#smooth-wrapper");
+        if (!sectionEl) return;
 
-        if (!sectionEl || !scroller) return;
+        const ctx = gsap.context(() => {
 
-        let ctx: gsap.Context | undefined;
+            const createAnimations = () => {
+                const scroller = "#smooth-wrapper";
 
-        const setupAnimations = () => {
-            const timeoutId = setTimeout(() => {
-                ctx = gsap.context(() => {
-                    // Animation for text elements
-                    const elementsToAnimate = gsap.utils.toArray(sectionEl.querySelectorAll('.anim-child'));
-                    gsap.from(elementsToAnimate, {
-                        opacity: 0, y: 30, stagger: 0.2,
-                        scrollTrigger: {
-                            scroller: scroller,
-                            trigger: sectionEl,
-                            start: "top 60%",
-                            toggleActions: "play none none none",
+                // Animation for text elements
+                const elementsToAnimate = gsap.utils.toArray(sectionEl.querySelectorAll('.anim-child'));
+                gsap.from(elementsToAnimate, {
+                    opacity: 0, y: 30, stagger: 0.2,
+                    scrollTrigger: {
+                        scroller: scroller,
+                        trigger: sectionEl,
+                        start: "top 60%",
+                        toggleActions: "play none none none",
+                    }
+                });
+
+                // Video Scrub Animation
+                const videoEl = videoRef.current;
+                if (videoEl) {
+                    videoEl.currentTime = 0;
+                    ScrollTrigger.create({
+                        scroller: scroller,
+                        trigger: sectionEl,
+                        start: "top top",
+                        end: "bottom bottom",
+                        onUpdate: self => {
+                            if (videoEl.duration) {
+                                videoEl.currentTime = videoEl.duration * self.progress;
+                            }
                         }
                     });
+                }
 
-                    // video scrub animation
-                    if (videoEl) {
-                        videoEl.currentTime = 0;
-                        ScrollTrigger.create({
-                            scroller: scroller,
-                            trigger: sectionEl,
-                            start: "top top",
-                            end: "bottom bottom",
-                            onUpdate: self => {
-                                if (videoEl.duration) {
-                                    const progress = self.progress;
-                                    videoEl.currentTime = videoEl.duration * progress;
-                                }
+                // Trigger for scene completion
+                if (!isInteractive) {
+                    ScrollTrigger.create({
+                        scroller: scroller,
+                        trigger: sectionEl,
+                        start: "top -150%",
+                        onEnter: () => onSceneComplete(id),
+                        once: true,
+                    })
+                }
+
+                // Animation for narrative texts
+                const narrativeContainer = sectionEl.querySelector("#narrative-scroll-container");
+                const narrativeTexts = sectionEl.querySelector("#narrative-texts");
+
+                if (narrativeContainer && narrativeTexts) {
+                    const containerHeight = narrativeContainer.clientHeight;
+                    const textHeight = narrativeTexts.clientHeight;
+
+                    if (textHeight > containerHeight) {
+                        gsap.to(narrativeTexts, {
+                            y: -(textHeight - containerHeight),
+                            ease: "none",
+                            scrollTrigger: {
+                                scroller: scroller,
+                                trigger: sectionEl,
+                                start: "top top",
+                                end: "bottom bottom",
+                                scrub: true,
                             }
                         });
                     }
-
-                    // trigger scene complete on scroll end
-                    if (!isInteractive) {
-                        ScrollTrigger.create({
-                            scroller: scroller,
-                            trigger: sectionEl,
-                            start: "top -150%",
-                            onEnter: () => onSceneComplete(id),
-                            once: true
-                        })
-                    }
-
-                    const narrativeContainer = sectionEl.querySelector("#narrative-scroll-container");
-                    const narrativeTexts = sectionEl.querySelector("#narrative-texts");
-
-                    if (narrativeContainer && narrativeTexts) {
-                        const containerHeight = narrativeContainer.clientHeight;
-                        const textHeight = narrativeTexts.clientHeight;
-
-                        if (textHeight > containerHeight) {
-                            gsap.to(narrativeTexts, {
-                                y: -(textHeight - containerHeight), // 'y' ist performanter als 'top'
-                                ease: "none",
-                                scrollTrigger: {
-                                    scroller: "#smooth-wrapper",
-                                    trigger: sectionEl,
-                                    start: "top top",
-                                    end: "bottom top", 
-                                    scrub: true,
-                                }
-                            });
-                        }
-                    }
-                }, sectionEl);
-            }, 0);
-            return () => {
-                clearTimeout(timeoutId);
-                ctx?.revert();
+                }
             };
-        };
 
-        if (videoEl) {
-            videoEl.onloadedmetadata = setupAnimations;
-        } else {
-            setupAnimations();
-        }
+            const videoEl = videoRef.current;
+            if (videoEl) {
+                if (videoEl.readyState >= 2) {
+                    createAnimations();
+                } else {
+                    videoEl.addEventListener('loadedmetadata', createAnimations, { once: true });
+                }
+            } else {
+                createAnimations();
+            }
+        }, sectionEl);
+
+        return () => ctx.revert();
+        
     }, [video, isInteractive, onSceneComplete, id]);
 
     const investigationBlock = content.find(block => block.type === 'investigation');
@@ -153,8 +153,8 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
                 )}
 
                 {/* Text-Ebene (zentrierter Inhalt) */}
-                <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 pointer-events-none">
-                    <div className="max-w-prose mx-auto">
+                <div className="absolute top-30 left-0 right-0 p-8 md:p-12 pointer-events-none">
+                    <div className="max-w-prose">
                         <div className="anim-container w-full space-y-4 text-white pointer-events-auto">
                             {otherContent.map((block, index) => {
                                 if (!block) return null;
