@@ -12,7 +12,6 @@ import InfoBlockView from "./game/InfoBlockView";
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { text } from "stream/consumers";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,12 +21,13 @@ type SceneSectionProps = {
     content: SceneContent[];
     id: string;
     video?: string; 
+    image?: string;
     onNavigate: (targetSceneId: string) => void;
     onSceneComplete: (sceneId: string) => void;
-    layout?: 'default' | 'split-view';
+    layout?: 'default' | 'split-view' | 'dialogue';
 };
 
-export default function SceneSection({ title, content, showTitleBanner, id, video, onNavigate, onSceneComplete, layout }: SceneSectionProps) {
+export default function SceneSection({ title, content, showTitleBanner, id, video, image, onNavigate, onSceneComplete, layout = 'default' }: SceneSectionProps) {
     const sectionRef = useRef<HTMLElement | null>(null);
     const videoRef = useRef<HTMLVideoElement | null>(null);
 
@@ -110,6 +110,38 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
                     }
                 }
 
+                // animation for dialogue texts
+                const dialogueContainer = sectionEl.querySelector('.dialogue-container');
+                if (dialogueContainer) {
+                    const lines = gsap.utils.toArray<HTMLElement>(dialogueContainer.querySelectorAll('.dialogue-line'));
+
+                    if (lines.length > 0) {
+                        gsap.set(lines[0], { opacity: 1 });
+
+                        const tl = gsap.timeline({
+                            scrollTrigger: {
+                                scroller: scroller,
+                                trigger: sectionEl,
+                                pin: true,
+                                pinReparent: true,
+                                anticipatePin: 1,
+                                scrub: 1,
+                                start: "top top",
+                                end: `+=${lines.length * 150}%`,
+                            }
+                        });
+
+                        lines.forEach((line, index) => {
+                            if (index === 0) return;
+
+                            const prevLine = lines[index - 1];
+
+                            tl.to(prevLine, { opacity: 0 }, `+=${index * 0.1}`)
+                                .to(line, { opacity: 1 });
+                        })
+                    }
+                }
+
                 // animation for buttons
                 if (interactiveBlocks.length > 0) {
                     const elementsToAnimate = gsap.utils.toArray(sectionEl.querySelectorAll('.anim-interactive'));
@@ -155,11 +187,12 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
     // separate content blocks
     const infoBlock = content.find(block => block?.type === 'info');
     const investigationBlock = content.find(block => block.type === 'investigation');
+    const dialogueBlock = content.find(block => block?.type === 'dialogue');
 
-    const otherContent = content.filter(block => block.type !== 'investigation' && block.type !== 'info');
+    const otherContent = content.filter(block => block.type !== 'investigation' && block.type !== 'info' && block.type !== 'dialogue');
 
     const textBlocks = otherContent.filter(
-        block => block?.type === 'narrative' || block?.type === 'dialogue'
+        block => block?.type === 'narrative'
     );
 
     const interactiveBlocks = otherContent.filter(
@@ -175,6 +208,7 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
             ref={sectionRef}
             id={id}
             className="relative h-screen"
+            style = {{ willChange: 'transform' }}
         >
             <div className="h-full w-full flex flex-col bg-black">
                 {/* infoBlock */}
@@ -197,6 +231,40 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
         );
     }
 
+    {/* dialogue layout */}
+    if (layout === 'dialogue') {
+        const dialogueBlock = content.find(block => block?.type === 'dialogue');
+
+        return (
+            <section
+            ref={sectionRef}
+            id={id}
+            className="relative h-screen"
+            >
+                <div className="h-screen w-full overflow-hidden bg-black">
+                    {/* background-layer */}
+                    {image && (
+                        <div
+                            className="absolute top-0 left-0 w-full h-full bg-cover bg-center"
+                            style={{ backgroundImage: `url(${image})` }}
+                        />
+                    )}
+
+                    {/* dialogue text layer */}
+                    {dialogueBlock && dialogueBlock.type === 'dialogue' && (
+                        <div className="absolute inset-0 flex items-start justify-center p-8 md:p-12 pointer-events-none">
+                            <div className="max-w-prose w-full">
+                                <div className="w-full text-white pointer-events-auto">
+                                    <DialogueBlockView block={dialogueBlock} />
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </section>
+        );
+    }
+
     return (
         <section
             ref={sectionRef}
@@ -214,6 +282,12 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
                         playsInline
                         muted
                         preload="metadata"
+                    />
+                )}
+                {!video && image && (
+                    <div
+                        className="absolute top-0 left-0 w-full h-full object-cover bg-center bg-cover"
+                        style={{ backgroundImage: `url(${image})` }}
                     />
                 )}
                 {investigationBlock && investigationBlock.type === 'investigation' && (
@@ -242,8 +316,6 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
                                     switch (block.type) {
                                         case 'narrative':
                                             return <NarrativeBlockView key={index} block={block} />;
-                                        case 'dialogue':
-                                            return <DialogueBlockView key={index} block={block} />;
                                         default:
                                             return null;
                                     }

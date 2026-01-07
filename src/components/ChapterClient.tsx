@@ -2,11 +2,14 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { Chapter, Scene } from "@/src/types";
+import { useIsomorphicLayoutEffect } from "@/src/lib/useIsomorphicLayoutEffect";
 import SceneSection from "@/src/components/SceneSection";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Lenis from "@studio-freight/lenis";
 
-gsap.registerPlugin(ScrollToPlugin);
+gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
 
 type ChapterClientProps = {
     chapterData: Chapter;
@@ -15,6 +18,28 @@ type ChapterClientProps = {
 export default function ChapterClient({ chapterData }: ChapterClientProps) {
     // State for the currently visible scenes
     const [visibleScenes, setVisibleScenes] = useState<Scene[]>([]);
+
+    useIsomorphicLayoutEffect(() => {
+        const lenis = new Lenis({
+            wrapper: document.querySelector("#smooth-wrapper") as HTMLElement,
+            content: document.querySelector("#smooth-content") as HTMLElement,
+        });
+
+        lenis.on('scroll', ScrollTrigger.update);
+
+        const tickerCallback = (time: number) => {
+            lenis.raf(time * 1000);
+        };
+        gsap.ticker.add(tickerCallback);
+
+        gsap.ticker.lagSmoothing(0);
+
+        // Cleanup-Funktion
+        return () => {
+            lenis.destroy();
+            gsap.ticker.remove(tickerCallback);
+        };
+    }, []);
 
     useEffect(() => {
         if (chapterData && chapterData.scenes.length > 0) {
@@ -92,6 +117,7 @@ export default function ChapterClient({ chapterData }: ChapterClientProps) {
                     showTitleBanner={scene.showTitleBanner}
                     content={scene.content}
                     video={scene.video}
+                    image={scene.image}
                     onNavigate={handleNavigate}
                     onSceneComplete={handleSceneComplete}
                     layout={scene.layout}

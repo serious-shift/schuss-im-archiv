@@ -147,6 +147,8 @@ export const chapters: Chapter[] = [
             {
                 id: "scene-2-path-c",
                 title: "Verhör: Ralf König (Freund & Journalist)",
+                image: '/images/Verhoerraum.png',
+                layout: 'dialogue',
                 content: [
                     {
                         type: 'dialogue',
