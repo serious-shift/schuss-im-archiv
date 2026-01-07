@@ -252,12 +252,17 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
 
                     {/* dialogue text layer */}
                     {dialogueBlock && dialogueBlock.type === 'dialogue' && (
-                        <div className="absolute inset-0 flex items-start justify-center p-8 md:p-12 pointer-events-none">
-                            <div className="max-w-prose w-full">
-                                <div className="w-full text-white pointer-events-auto">
-                                    <DialogueBlockView block={dialogueBlock} />
+                        <div className="dialogue-container absolute bottom-0 left-0 right-0 p-8 md:p-12 pointer-events-none">
+                            {dialogueBlock.lines.map((line, index) => (
+                                <div
+                                    key={index}
+                                    className={`dialogue-line absolute bottom-8 md:bottom-12 left-8 right-8 md:left-12 md:right-12 flex opacity-0 pointer-events-auto ${line.align === 'left' ? 'justify-start' : 'justify-end'}`}
+                                >
+                                    <div className="max-w-prose w-full">
+                                        <DialogueBlockView line={line} />
+                                    </div>
                                 </div>
-                            </div>
+                            ))}
                         </div>
                     )}
                 </div>

@@ -64,6 +64,7 @@ export type DialogueBlock = {
 export type DialogueLine = {
     character: string;
     text: string;
+    align: 'left' | 'right';
 }
 
 export type Choice = {
