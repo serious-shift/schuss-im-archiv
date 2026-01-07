@@ -114,6 +114,7 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
                 const dialogueContainer = sectionEl.querySelector('.dialogue-container');
                 if (dialogueContainer) {
                     const lines = gsap.utils.toArray<HTMLElement>(dialogueContainer.querySelectorAll('.dialogue-line'));
+                    const decisionContainer = sectionEl.querySelector('.decision-block-container');
 
                     if (lines.length > 0) {
                         gsap.set(lines[0], { opacity: 1 });
@@ -138,7 +139,14 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
 
                             tl.to(prevLine, { opacity: 0 }, `+=${index * 0.1}`)
                                 .to(line, { opacity: 1 });
-                        })
+                        });
+
+                        if (decisionContainer) {
+                            gsap.set(decisionContainer, { autoAlpha: 0 });
+
+                            tl.to(lines[lines.length -1], { opacity: 0 }, "+=1")
+                            .to(decisionContainer, { autoAlpha: 1 });
+                        }
                     }
                 }
 
@@ -234,6 +242,7 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
     {/* dialogue layout */}
     if (layout === 'dialogue') {
         const dialogueBlock = content.find(block => block?.type === 'dialogue');
+        const decisionBlock = content.find(block => block?.type === 'decision');
 
         return (
             <section
@@ -265,7 +274,23 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
                             ))}
                         </div>
                     )}
+
+                    {/* decision block layer */}
+                    {decisionBlock && decisionBlock.type === 'decision' && (
+                        <div className="absolute inset-0 flex items-center jsuify-center p-8 md:p-12">
+                            <div className="decision-block-container opacity-0 w-full max-w-prose pointer-events-auto">
+                                <DecisionBlockView block={decisionBlock} onNavigate={onNavigate} />
+                            </div>
+                        </div>
+                    )}
                 </div>
+
+                {/* UI Title Banner */}
+                {showTitleBanner && (
+                    <div className="title-banner z-10">
+                        <h3>{title}</h3>
+                    </div>
+                )}
             </section>
         );
     }

@@ -5,6 +5,9 @@ import ChapterClient from "@/src/components/ChapterClient";
 type ChapterPageProps = {
     params: {
         chapterId: string;
+    },
+    searchParams: {
+        scene?: string;
     }
 }
 

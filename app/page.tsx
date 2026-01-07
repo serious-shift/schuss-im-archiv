@@ -13,11 +13,18 @@ export default function Home() {
         <p className="text-lg md:text-xl text-gray-300 mb-8">
           Ein interaktiver Kriminalfall
         </p>
-        <Link href="/chapter/1"
+        <div className="flex flex-col gap-4">
+          <Link href="/chapter/1"
             className="inline-block bg-red-700 hover:bg-red-800 text-white font-bold py-3 px-8 rounded-lg text-lg transition-transform duration-300 hover:scale-105"
 >
           Fall beginnen
         </Link>
+        <Link href="/chapter/1"
+            className="inline-block bg-red-700 hover:bg-red-800 text-white font-bold py-3 px-8 rounded-lg text-lg transition-transform duration-300 hover:scale-105"
+>
+          dev mode
+        </Link>
+        </div>
       </div>
     </main>
   );

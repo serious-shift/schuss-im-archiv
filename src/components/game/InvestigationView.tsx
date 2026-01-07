@@ -17,16 +17,18 @@ export default function InvestigationView({ block, onComplete }: InvestigationVi
     const [isCompleted, setIsCompleted] = useState(false);
 
     useEffect(() => {
+        if (isCompleted) return;
+
         const requiredHotspots = block.hotspots.filter(h => h.required);
-        if (requiredHotspots.length === 0) return;
+        if (requiredHotspots.length === 0) {
+            setIsCompleted(true);
+            return;
+        }
 
         const allRequiredFound = requiredHotspots.every(h => foundHotspots.has(h.id));
 
         if (allRequiredFound) {
             setIsCompleted(true);
-            if (onComplete) {
-                onComplete();
-            }
         }
     }, [foundHotspots, block.hotspots, onComplete]);
 
