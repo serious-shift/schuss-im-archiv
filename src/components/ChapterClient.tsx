@@ -94,6 +94,7 @@ export default function ChapterClient({ chapterData }: ChapterClientProps) {
                     video={scene.video}
                     onNavigate={handleNavigate}
                     onSceneComplete={handleSceneComplete}
+                    layout={scene.layout}
                 />
             ))}
         </main>

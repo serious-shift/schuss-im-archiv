@@ -8,9 +8,11 @@ import NarrativeBlockView from "./game/NarrativeBlockView";
 import DialogueBlockView from "./game/DialogueBlockView";
 import NavigationBlockView from "./game/NavigationBlockView";
 import DecisionBlockView from "./game/DecisionBlockView";
+import InfoBlockView from "./game/InfoBlockView";
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { text } from "stream/consumers";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,9 +24,10 @@ type SceneSectionProps = {
     video?: string; 
     onNavigate: (targetSceneId: string) => void;
     onSceneComplete: (sceneId: string) => void;
+    layout?: 'default' | 'split-view';
 };
 
-export default function SceneSection({ title, content, showTitleBanner, id, video, onNavigate, onSceneComplete }: SceneSectionProps) {
+export default function SceneSection({ title, content, showTitleBanner, id, video, onNavigate, onSceneComplete, layout }: SceneSectionProps) {
     const sectionRef = useRef<HTMLElement | null>(null);
     const videoRef = useRef<HTMLVideoElement | null>(null);
 
@@ -150,8 +153,10 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
     }, [video, isInteractive, onSceneComplete, id]);
 
     // separate content blocks
+    const infoBlock = content.find(block => block?.type === 'info');
     const investigationBlock = content.find(block => block.type === 'investigation');
-    const otherContent = content.filter(block => block.type !== 'investigation');
+
+    const otherContent = content.filter(block => block.type !== 'investigation' && block.type !== 'info');
 
     const textBlocks = otherContent.filter(
         block => block?.type === 'narrative' || block?.type === 'dialogue'
@@ -160,6 +165,37 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
     const interactiveBlocks = otherContent.filter(
         block => block?.type === 'decision' || block?.type === 'navigation'
     )
+
+    {/* interaction layer in split view */}
+    if (layout === 'split-view') {
+        const decisionBlock = interactiveBlocks.find(block => block?.type === 'decision');
+
+        return (
+            <section
+            ref={sectionRef}
+            id={id}
+            className="relative h-screen"
+        >
+            <div className="h-full w-full flex flex-col bg-black">
+                {/* infoBlock */}
+                {infoBlock && infoBlock.type === 'info' && (
+                    <div className="felx-shrink-0 p-8 md:p-12" style={{ height: '15vh' }}>
+                        <div className="max-w-prose mx-auto h-full flex items-center">
+                            <InfoBlockView block={infoBlock} />
+                        </div>
+                    </div>
+                )}
+
+                {/* decision block */}
+                {decisionBlock && decisionBlock.type === 'decision' && (
+                    <div className="flex-grow p-8 md:p-12">
+                        <DecisionBlockView block={decisionBlock} onNavigate={onNavigate} />
+                    </div>
+                )}
+            </div>
+        </section>
+        );
+    }
 
     return (
         <section
@@ -187,43 +223,56 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
                     />
                 )}
 
-                {/* text layer */}
-                <div className="absolute top-30 left-0 right-0 p-8 md:p-12 pointer-events-none">
-                    <div className="max-w-prose">
-                        <div className="anim-container w-full space-y-4 text-white pointer-events-auto">
-                            {otherContent.map((block, index) => {
-                                if (!block) return null;
-                                switch (block.type) {
-                                    case 'narrative':
-                                        return <NarrativeBlockView key={index} block={block} />;
-                                    case 'dialogue':
-                                        return <DialogueBlockView key={index} block={block} />;
-                                    default:
-                                        return null;
-                                }
-                            })}
+                {/* info block layer */}
+                {infoBlock && infoBlock.type === 'info' && (
+                    <div className="top-20 left-0 right-0 p-8 md:p-12 pointer-events-none z-10">
+                        <div className="max-w-prose mx-auto">
+                            <InfoBlockView block={infoBlock} />
                         </div>
                     </div>
-                </div>
+                )}
+
+                {/* text layer */}
+                {textBlocks.length > 0 && (
+                    <div className="absolute top-30 left-0 right-0 p-8 md:p-12 pointer-events-none">
+                        <div className="max-w-prose">
+                            <div className="anim-container w-full space-y-4 text-white pointer-events-auto">
+                                {textBlocks.map((block, index) => {
+                                    if (!block) return null;
+                                    switch (block.type) {
+                                        case 'narrative':
+                                            return <NarrativeBlockView key={index} block={block} />;
+                                        case 'dialogue':
+                                            return <DialogueBlockView key={index} block={block} />;
+                                        default:
+                                            return null;
+                                    }
+                                })}
+                            </div>
+                        </div>
+                    </div>
+                )}
 
                 {/* interaction layer */}
-                <div className="interactive-container absolute bottom-10 left-0 right-0 p-8 md:p-12 pointer-events-none">
-                    <div className="max-w-prose mx-auto">
-                        <div className="anim-container w-full space-y-4 text-white pointer-events-auto">
-                            {otherContent.map((block, index) => {
-                                if (!block) return null;
-                                switch (block.type) {
-                                    case 'decision':
-                                        return <DecisionBlockView key={index} block={block} onNavigate={onNavigate} />;
-                                    case 'navigation':
-                                        return <NavigationBlockView key={index} block={block} onNavigate={onNavigate} />;
-                                    default:
-                                        return null;
-                                }
-                            })}
+                {interactiveBlocks.length > 0 && (
+                    <div className="interactive-container absolute bottom-10 left-0 right-0 p-8 md:p-12 pointer-events-none">
+                        <div className="max-w-prose mx-auto">
+                            <div className="anim-container w-full space-y-4 text-white pointer-events-auto">
+                                {interactiveBlocks.map((block, index) => {
+                                    if (!block) return null;
+                                    switch (block.type) {
+                                        case 'decision':
+                                            return <DecisionBlockView key={index} block={block} onNavigate={onNavigate} />;
+                                        case 'navigation':
+                                            return <NavigationBlockView key={index} block={block} onNavigate={onNavigate} />;
+                                        default:
+                                            return null;
+                                    }
+                                })}
+                            </div>
                         </div>
                     </div>
-                </div>
+                )}
 
                 {/* UI Title Banner */}
                 {showTitleBanner && (

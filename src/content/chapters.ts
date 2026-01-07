@@ -67,7 +67,7 @@ export const chapters: Chapter[] = [
                                 id: 'hint-3',
                                 title: 'DNA-Spur',
                                 description: 'Die Spurensicherung war bereits vor Ort und konnte eine DNA Spur in Form einer Haares an Hellers Ärmel sicherstellen.',
-                                image: '/images/Pistole_Prop.png',
+                                image: '/images/pistole.png',
                                 required: true,
                                 position: { x: 10, y: 30 }
                             },
@@ -83,7 +83,7 @@ export const chapters: Chapter[] = [
                                 id: 'hint-5',
                                 title: 'Wiederhergestellte Audioaufnahme',
                                 description: ' Die Spurensicherung konnte eine gelöschte Audio-Datei von Hellers Handy wiederherstellen. Sie hören ein lautes, emotionales Streitgespräch mit dem Journalisten Ralf König. ',
-                                image: '/images/Pistole_Prop.png',
+                                image: '/images/pistole.png',
                                 required: true,
                                 position: { x: 30, y: 50 }
                             }
@@ -94,33 +94,35 @@ export const chapters: Chapter[] = [
             {
                 id: "scene-1-decision",
                 title: "Erste Entscheidung",
+                layout: 'split-view',
                 content: [
                     {
-                        type: 'narrative',
-                        text: "Die Spurensicherung hat die Funde aus Büro 3.17 verarbeitet. Die Ergebnisse führen zu drei Personen:"
+                        type: 'info',
+                        text: "Die Spurensicherung hat die Funde aus Büro 3.17 verarbeitet. Die Ergebnisse führen zu drei Personen:",
                     },
                     {
                         type: 'decision',
                         question: "Sie müssen entscheiden, welche der drei Hauptspuren Sie zuerst in der Konfrontation vertiefen.",
+                        backgroundImage: '/images/investigation_tatort.png',
                         choices: [
                             {
                                 text: "Dr. Petra Haas (DNA des Haars am Ärmel)",
                                 targetSceneId: "scene-2-path-a",
-                                image: '/images/Pistole_Prop.png' 
+                                image: '/images/pistole.png' 
                             },
                             {
                                 text: "Lena Bergmann (Schriftuntersuchung des Zettels auf Schreibtisch)",
                                 targetSceneId: "scene-2-path-b",
-                                image: '/images/Spendenblatt.png'
+                                image: '/images/pistole.png'
                             },
                             {
                                 text: "Ralf König (Audiospur auf Hellers Handy)",
                                 targetSceneId: "scene-2-path-c",
-                                image: '/images/Pistole_Prop.png',
+                                image: '/images/pistole.png',
 
                             }
                         ],
-                        displayAs: 'decision'
+                        displayAs: 'decision',
                     }
                 ]
             },

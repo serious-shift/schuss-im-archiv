@@ -10,9 +10,26 @@ export default function DecisionBlockView({ block, onNavigate }: DecisionBlockVi
     const isQuestionStyle = block.displayAs === 'question';
     const isImageTileStyle = block.choices.some(choice => choice.image);
 
+    const backgroundStyle = block.backgroundImage
+        ? { backgroundImage: `url(${block.backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }
+        : undefined;
+
+    const combinedStyle = {
+        // Setze IMMER eine Hintergrundfarbe. 
+        // RGBA: 0, 0, 0 ist Schwarz. 0.7 ist 70% Deckkraft.
+        backgroundColor: 'rgba(0, 0, 0, 0.7)', 
+        borderRadius: '0.5rem', // Entspricht rounded-lg
+        // Füge das Hintergrundbild hinzu, WENN es existiert
+        ...(block.backgroundImage && { 
+            backgroundImage: `url(${block.backgroundImage})`, 
+            backgroundSize: 'cover', 
+            backgroundPosition: 'center' 
+        })
+    };
+
     if (isImageTileStyle) {
         return (
-            <div className="anim-child text-center p-4 space-y-8">
+            <div className="text-center p-4 space-y-8 opacity-100 bg-black" style={combinedStyle}>
                 <p className="text-xl italic text-gray-300">
                     {block.question}
                 </p>
@@ -42,11 +59,11 @@ export default function DecisionBlockView({ block, onNavigate }: DecisionBlockVi
     }
 
     const containerClasses = isQuestionStyle
-        ? "anim-child text-left p-4 space-y-3"
-        : "anim-child text-center p-4 space-y-6";
+        ? "text-left p-4 space-y-3"
+        : "text-center p-4 space-y-6";
 
     return (
-        <div className={containerClasses}>
+        <div className={containerClasses} style={combinedStyle}>
             <p className="text-xl italic text-gray-300">
                 {block.question}
             </p>

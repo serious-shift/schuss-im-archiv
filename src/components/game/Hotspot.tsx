@@ -10,10 +10,14 @@ type HotspotProps = {
 
 export default function Hotspot({ hotspot, onClick }: HotspotProps) {
     const transformation = [
-       `rotate(${hotspot.rotation || 0}deg)`,
-        `skewX(${hotspot.skewX || 0}deg)`,
-        `skewY(${hotspot.skewY || 0}deg)` 
-    ].join(' ');
+       hotspot.perspective ? `perspective(${hotspot.perspective}px)` : '',
+        hotspot.rotateX ? `rotateX(${hotspot.rotateX}deg)` : '',
+        hotspot.rotateY ? `rotateY(${hotspot.rotateY}deg)` : '',
+        hotspot.rotation ? `rotate(${hotspot.rotation}deg)` : '', 
+        hotspot.skewX ? `skewX(${hotspot.skewX}deg)` : '',
+        hotspot.skewY ? `skewY(${hotspot.skewY}deg)` : '',
+        hotspot.scale ? `scale(${hotspot.scale})` : ''
+    ].filter(Boolean).join(' ');
 
     return (
         <button
@@ -33,6 +37,7 @@ export default function Hotspot({ hotspot, onClick }: HotspotProps) {
                 className="object-contain drop-shadow-lg"
                 style={{
                     transform: transformation,
+                    transformStyle: 'preserve-3d',
                 }}
             />
         </button>

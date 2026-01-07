@@ -5,6 +5,7 @@ export type Scene = {
     image?: string;
     video?: string;
     content: SceneContent[];
+    layout?: 'default' | 'split-view';
 }
 
 export type Chapter = {
@@ -13,7 +14,7 @@ export type Chapter = {
     scenes: Scene[];
 }
 
-export type SceneContent = NarrativeBlock | DialogueBlock | NavigationBlock | nullBlock | InvestigationBlock | DecisionBlock;
+export type SceneContent = NarrativeBlock | DialogueBlock | NavigationBlock | nullBlock | InvestigationBlock | DecisionBlock | InfoBlock;
 
 export type InvestigationBlock = {
     type: 'investigation';
@@ -53,7 +54,6 @@ export type nullBlock = {
 export type NarrativeBlock = {
     type: "narrative";
     text: string | string[];
-    displayAs?: 'default' | 'summary';
 }
 
 export type DialogueBlock = {
@@ -77,4 +77,10 @@ export type DecisionBlock = {
     question: string;
     choices: Choice[];
     displayAs?: 'decision' | 'question';
+    backgroundImage?: string;
+}
+
+export type InfoBlock = {
+    type: "info";
+    text: string;
 }
