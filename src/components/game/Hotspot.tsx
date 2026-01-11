@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from 'react';
 import { Hotspot as HotspotType } from '@/src/types';
 import Image from 'next/image';
 
@@ -9,6 +10,8 @@ type HotspotProps = {
 };
 
 export default function Hotspot({ hotspot, onClick }: HotspotProps) {
+    const [isHovered, setIsHovered] = useState(false);
+
     const transformation = [
        hotspot.perspective ? `perspective(${hotspot.perspective}px)` : '',
         hotspot.rotateX ? `rotateX(${hotspot.rotateX}deg)` : '',
@@ -19,10 +22,14 @@ export default function Hotspot({ hotspot, onClick }: HotspotProps) {
         hotspot.scale ? `scale(${hotspot.scale})` : ''
     ].filter(Boolean).join(' ');
 
+    const hoverTransformation = hotspot.scale ? `scale(${hotspot.scale * 1.1})` : 'scale(1.1)';
+
     return (
         <button
             onClick={() => onClick(hotspot)}
-            className="absolute w-24 h-24 transform -translate-x-1/2 -translate-y-1/2 transition-transform duration-300 hover:scale-110"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            className="group absolute w-24 h-24 transform -translate-x-1/2 -translate-y-1/2"
             style={{
                 left: `${hotspot.position.x}%`,
                 top: `${hotspot.position.y}%`,
@@ -34,9 +41,9 @@ export default function Hotspot({ hotspot, onClick }: HotspotProps) {
                 alt={hotspot.title}
                 width={80}
                 height={80}
-                className="object-contain drop-shadow-lg"
+                className="object-contain drop-shadow-lg transition-transform duration-300"
                 style={{
-                    transform: transformation,
+                    transform: isHovered ? hoverTransformation : transformation,
                     transformStyle: 'preserve-3d',
                 }}
             />
