@@ -494,13 +494,11 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
                 {/* interaction layer */}
                 {interactiveBlocks.length > 0 && (
                     <div className="interactive-container absolute bottom-10 left-0 right-0 p-8 md:p-12 pointer-events-none z-20">
-                        <div className="max-w-prose mx-auto">
-                            <div className="anim-container w-full space-y-4 text-white pointer-events-auto">
+                        {investigationBlock ? (
+                            <div className="inline-flex justify-start pointer-events-auto">
                                 {interactiveBlocks.map((block, index) => {
                                     if (!block) return null;
                                     switch (block.type) {
-                                        case 'decision':
-                                            return <DecisionBlockView key={index} block={block} onNavigate={onNavigate} onDecision={(followUp) => onDecision(id, followUp)} />;
                                         case 'navigation':
                                             return <NavigationBlockView key={index} block={block} onNavigate={onNavigate} />;
                                         default:
@@ -508,7 +506,23 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
                                     }
                                 })}
                             </div>
-                        </div>
+                        ) : (
+                            <div className="max-w-prose mx-auto">
+                                <div className="anim-container w-full space-y-4 text-white pointer-events-auto">
+                                    {interactiveBlocks.map((block, index) => {
+                                        if (!block) return null;
+                                        switch (block.type) {
+                                            case 'decision':
+                                                return <DecisionBlockView key={index} block={block} onNavigate={onNavigate} onDecision={(followUp) => onDecision(id, followUp)} />;
+                                            case 'navigation':
+                                                return <NavigationBlockView key={index} block={block} onNavigate={onNavigate} />;
+                                            default:
+                                                return null;
+                                        }
+                                    })}
+                                </div>
+                            </div>
+                        )}
                     </div>
                 )}
 

@@ -20,7 +20,7 @@ export default function NavigationBlockView({ block, onNavigate }: NavigationBlo
     };
 
     return (
-        <div className="anim-interactive text-center pt-4 pointer-events-auto">
+        <div className="anim-interactive inline-block pt-4 pointer-events-auto">
             <button
                 onClick={() => handleNavigationClick()}
                 className="inline-block bg-red-700 hover:bg-red-800 text-white font-bold py-3 px-8 rounded-lg text-lg transition-transform duration-300 hover:scale-105"

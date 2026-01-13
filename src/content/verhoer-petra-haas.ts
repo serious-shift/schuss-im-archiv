@@ -7,7 +7,7 @@ export const verhoerPetraHaasChapter: Chapter = {
     {
       id: "szene-2-a",
       title: "Verhör: Dr. Petra Haas (Kollegin)",
-      image: '/images/Verhoerraum.png',
+      image: '/images/interrogations/Dr-Petra-Haas-sitzend.png',
       layout: "dialogue",
       showTitleBanner: true,
       content: [
@@ -84,6 +84,11 @@ export const verhoerPetraHaasChapter: Chapter = {
           type: "narrative",
           text: "Um die zeitlichen Angaben aus der Befragung zu verifizieren, werden nun die Zugangsprotokolle des Archivs ausgewertet."
         },
+        {
+          type: "navigation",
+          buttonText: "Zugangsprotokolle prüfen",
+          targetChapterId: "untersuchung-der-archivzugaenge"
+        }
       ]
     }
   ]

@@ -7,7 +7,7 @@ export const verhoerLenaBergmannChapter: Chapter = {
     {
       id: "szene-2-b",
       title: "Verhör: Lena Bergmann (Praktikantin)",
-      image: '/images/Verhoerraum.png',
+      image: '/images/interrogations/Lena-Bergmann-sitzend.png',
       layout: "dialogue",
       showTitleBanner: true,
       content: [
@@ -317,11 +317,11 @@ export const verhoerLenaBergmannChapter: Chapter = {
                 choices: [
                     {
                         text: "➜ Sie schauen sich die Archivzugänge an. Wurde Lena wirklich um 15:00 Uhr ausgebucht? Oder war sie doch länger vor Ort, als sie behauptet?",
-                        targetChapterId: "scene-3-c-a-tonspur-pruefen"
+                        targetChapterId: "lenas-anliegen"
                     },
                     {
                         text: "➜ Sie geben den Zettel an die Spurensicherung weiter: Tinte, Fingerabdrücke, Papierherkunft – alles wird geprüft. Vielleicht lässt sich belegen, wer ihn tatsächlich geschrieben – und vielleicht sogar noch angefasst – hat.",
-                        targetChapterId: "veroeffentlichungen-durchleuchten"
+                        targetChapterId: "zettel-pruefen"
                     }
                 ]
             }

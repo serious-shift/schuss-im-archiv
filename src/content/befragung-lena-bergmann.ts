@@ -8,7 +8,7 @@ export const befragungLenaBergmannChapter: Chapter = {
       id: "scene-5-c-a-b",
       title: "Befragung Lena Bergmann",
       layout: "dialogue",
-      image: '/images/Verhoerraum.png',
+      image: '/images/interrogations/Lena-Bergmann-sitzend.png',
       showTitleBanner: true,
       content: [
         {

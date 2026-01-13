@@ -7,7 +7,7 @@ export const verhoerRalfKoenigChapter: Chapter = {
     {
         id: "scene-2-c",
         title: "Verhör: Ralf König (Freund & Journalist)",
-        image: '/images/Verhoerraum.png',
+        image: '/images/interrogations/Ralf-König-sitzend-verhörraum.png',
         layout: 'dialogue',
         showTitleBanner: true,
         content: [

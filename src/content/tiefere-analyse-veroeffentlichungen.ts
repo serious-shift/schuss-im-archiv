@@ -7,6 +7,7 @@ export const tiefereAnalyseVeroeffentlichungenChapter: Chapter = {
     {
         id: "scene-5-c-b-b-analyse",
         title: "Tiefere Analyse Veröffentlichungen",
+        image: "/images/scene-5/5CBB-verdeckte-geldfluesse-heller-wankt.png",
         showTitleBanner: true,
         content: [
             {
