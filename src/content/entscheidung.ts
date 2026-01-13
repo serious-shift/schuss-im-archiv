@@ -20,12 +20,12 @@ export const entscheidungChapter: Chapter = {
           choices: [
               {
                   text: "Dr. Petra Haas (DNA des Haars am Ärmel)",
-                  targetChapterId: "2-verhoer-petra-haas",
+                  targetChapterId: "verhoer-petra-haas",
                   image: '/images/martin_heller.png' 
               },
               {
                   text: "Lena Bergmann (Schriftuntersuchung des Zettels auf Schreibtisch)",
-                  targetChapterId: "2-verhoer-lena-bergmann",
+                  targetChapterId: "verhoer-lena-bergmann",
                   image: '/images/martin_heller.png'
               },
               {

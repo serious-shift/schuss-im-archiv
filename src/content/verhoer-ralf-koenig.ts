@@ -5,7 +5,7 @@ export const verhoerRalfKoenigChapter: Chapter = {
   title: "Verhör: Ralf König",
   scenes: [
     {
-        id: "scene-2-path-c",
+        id: "scene-2-c",
         title: "Verhör: Ralf König (Freund & Journalist)",
         image: '/images/Verhoerraum.png',
         layout: 'dialogue',
@@ -165,11 +165,11 @@ export const verhoerRalfKoenigChapter: Chapter = {
                 choices: [
                     {
                         text: "→ Tonspur forensisch prüfen lassen. Die Aufnahme auf Dr. Hellers Handy wird an eine spezialisierte Abteilung zur technischen Analyse übergeben.",
-                        targetSceneId: "scene-3-c-a-tonspur-pruefen"
+                        targetChapterId: "tonspur-pruefen"
                     },
                     {
                         text: "→ Königs Veröffentlichungen durchleuchten. Sie werfen einen genauen Blick auf Königs journalistische Arbeit: Artikel, Recherchen, mögliche Verbindungen zum Fall.",
-                        targetSceneId: "scene-3-c-b-veröffentlichungen-durchleuchten"
+                        targetChapterId: "veroeffentlichungen-durchleuchten"
                     }
                 ]
             }

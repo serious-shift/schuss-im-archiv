@@ -88,3 +88,13 @@ export type InfoBlock = {
     type: "info";
     text: string;
 }
+
+export type AnalysisBlock = {
+    type: "analysis";
+    title: string;
+    items: {
+        label: string;
+        value: string;
+        subItems?: string[];
+    }
+}
