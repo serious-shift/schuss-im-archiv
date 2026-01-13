@@ -264,10 +264,21 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
         const decisionBlock = content.find(block => block?.type === 'decision') as DecisionBlock | undefined;
         const navigationBlock = content.find(block => block?.type === 'navigation') as NavigationBlock | undefined;
 
-        const dialogueSteps = dialogueBlock ? dialogueBlock.lines.length : 0;
-        const decisionSteps = decisionBlock ? 1 : 0;
-        const navigationSteps = navigationBlock ? 1 : 0;
-        const totalSteps = dialogueSteps + decisionSteps + navigationSteps;
+        //const dialogueSteps = dialogueBlock ? dialogueBlock.lines.length : 0;
+        //const decisionSteps = decisionBlock ? 1 : 0;
+        //const navigationSteps = navigationBlock ? 1 : 0;
+        //const totalSteps = dialogueSteps + decisionSteps + navigationSteps;
+
+        const sequenceContent = content.filter(
+            block => block?.type === 'dialogue' || block?.type === 'decision' || block?.type === 'navigation'
+        );
+
+        const totalSteps = sequenceContent.reduce((acc, block) => {
+            if (block?.type === 'dialogue') {
+                return acc + block.lines.length;
+            }
+            return acc + 1;
+        }, 0);
 
         const sectionHeight = 100 + (totalSteps > 1 ? (totalSteps -1) * 100 : 0);
 
@@ -288,36 +299,43 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
                     )}
 
                     <div className="dialogue-container absolute inset-0">
-                        {/* dialogue text layer */}     
-                        {dialogueBlock && dialogueBlock.lines.map((line, index) => (
-                            <div
-                                key={index}
-                                className={`dialogue-step absolute bottom-8 md:bottom-12 left-8 right-8 md:left-12 md:right-12 flex opacity-0 pointer-events-auto ${line.align === 'left' ? 'justify-start' : 'justify-end'}`}
-                            >
-                                <div className="max-w-prose w-full">
-                                    <DialogueBlockView line={line} />
-                                </div>
-                            </div>
-                        ))}
+                        {content.map((block, blockIndex) => {
+                            switch (block.type) {
+                                case 'dialogue':
+                                    return block.lines.map((line, lineIndex) => (
+                                        <div
+                                            key={`${blockIndex}-${lineIndex}`}
+                                            className={`dialogue-step absolute bottom-8 md:bottom-12 left-8 right-8 md:left-12 md:right-12 flex opacity-0 pointer-events-auto ${line.align === 'left' ? 'justify-start' : 'justify-end'}`}
+                                        >
+                                            <div className="max-w-prose w-full">
+                                                <DialogueBlockView line={line} />
+                                            </div>
+                                        </div>
+                                    ));
 
-                        {/* decision block layer */}
-                        {decisionBlock && decisionBlock.type === 'decision' && (
-                            <div className="dialogue-step absolute inset-0 flex items-center justify-center p-8 md:p-12">
-                                <div className="decision-block-container opacity-0 w-full max-w-prose pointer-events-auto">
-                                    <DecisionBlockView block={decisionBlock} onNavigate={onNavigate} />
-                                </div>
-                            </div>
-                        )}
+                                case 'decision':
+                                    return (
+                                        <div key={blockIndex} className="dialogue-step absolute inset-0 flex items-center justify-center p-8 md:p-12">
+                                            <div className="decision-block-container w-full max-w-prose pointer-events-auto">
+                                                <DecisionBlockView block={block} onNavigate={onNavigate} />
+                                            </div>
+                                        </div>
+                                    );
 
-                        {/* navigation block layer */}
-                        {navigationBlock && (
-                            <div className="dialogue-step absolute bottom-10 left-1/2 -translate-x-1/2 z-20">
-                                <NavigationBlockView
-                                    block={navigationBlock as NavigationBlock}
-                                    onNavigate={onNavigate}
-                                />
-                            </div>
-                        )}
+                                case 'navigation':
+                                    return (
+                                        <div key={blockIndex} className="dialogue-step absolute bottom-10 left-1/2 -translate-x-1/2 z-20">
+                                            <NavigationBlockView
+                                                block={block}
+                                                onNavigate={onNavigate}
+                                            />
+                                        </div>
+                                    );
+                                    
+                                default:
+                                    return null;
+                            }
+                        })}
                     </div>
                 </div>
 
