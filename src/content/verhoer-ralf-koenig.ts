@@ -96,7 +96,7 @@ export const verhoerRalfKoenigChapter: Chapter = {
                           {
                               type: 'navigation',
                               buttonText: "Weiter",
-                              targetSceneId: "scene-2-path-c-decision"
+                              targetChapterId: "tonspur-pruefen"
                           }
                         ]
                     },
@@ -150,6 +150,27 @@ export const verhoerRalfKoenigChapter: Chapter = {
                           }
                         ]
                     },
+                ]
+            }
+        ]
+    },
+    {
+        id: "scene-2-path-c-decision",
+        title: "Glauben schenken oder nicht?",
+        showTitleBanner: true,
+        content: [
+            {
+                type: 'decision',
+                question: "Das Gespräch mit Ralf König hat neue Fragen aufgeworfen. Die Audioaufnahme steht im Widerspruch zu seinen Aussagen – doch wo liegt die Wahrheit?",
+                choices: [
+                    {
+                        text: "→ Tonspur forensisch prüfen lassen. Die Aufnahme auf Dr. Hellers Handy wird an eine spezialisierte Abteilung zur technischen Analyse übergeben.",
+                        targetSceneId: "scene-3-c-a-tonspur-pruefen"
+                    },
+                    {
+                        text: "→ Königs Veröffentlichungen durchleuchten. Sie werfen einen genauen Blick auf Königs journalistische Arbeit: Artikel, Recherchen, mögliche Verbindungen zum Fall.",
+                        targetSceneId: "scene-3-c-b-veröffentlichungen-durchleuchten"
+                    }
                 ]
             }
         ]
