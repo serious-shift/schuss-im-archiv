@@ -14,7 +14,7 @@ export default function Home() {
           Ein interaktiver Kriminalfall
         </p>
         <div className="flex flex-col gap-4">
-          <Link href="/chapter/1"
+          <Link href="/chapter/einfuehrung"
             className="inline-block bg-red-700 hover:bg-red-800 text-white font-bold py-3 px-8 rounded-lg text-lg transition-transform duration-300 hover:scale-105"
 >
           Fall beginnen

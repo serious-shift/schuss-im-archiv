@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { useIsomorphicLayoutEffect } from "@/src/lib/useIsomorphicLayoutEffect";
-import { SceneContent, DialogueBlock, DecisionBlock, NavigationBlock } from "@/src/types";
+import { SceneContent, DialogueBlock, DecisionBlock, NavigationBlock, InfoBlock, InvestigationBlock, NarrativeBlock } from "@/src/types";
 import InvestigationView from "./game/InvestigationView";
 import NarrativeBlockView from "./game/NarrativeBlockView";
 import DialogueBlockView from "./game/DialogueBlockView";
@@ -31,10 +31,17 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
     const sectionRef = useRef<HTMLElement | null>(null);
     const videoRef = useRef<HTMLVideoElement | null>(null);
 
-    // check for interactive blocks
-    const isInteractive = content.some(block =>
-        block.type === 'investigation' || block.type === 'decision' || block.type === 'navigation'
-    )
+    {/* Define all content blocks */}
+    const infoBlock = content.find(block => block?.type === 'info') as InfoBlock | undefined;
+    const investigationBlock = content.find(block => block?.type === 'investigation') as InvestigationBlock | undefined;
+    const dialogueBlock = content.find(block => block?.type === 'dialogue') as DialogueBlock | undefined;
+    const decisionBlock = content.find(block => block?.type === 'decision') as DecisionBlock | undefined;
+    const navigationBlock = content.find(block => block?.type === 'navigation') as NavigationBlock | undefined;
+    const narrativeBlocks = content.filter(block => block?.type === 'narrative') as NarrativeBlock[];
+
+
+    {/* Check for interactive blocks */}
+    const isInteractive = !!(investigationBlock || decisionBlock || navigationBlock);
 
     useIsomorphicLayoutEffect(() => {
         const sectionEl = sectionRef.current;
@@ -45,26 +52,11 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
         const ctx = gsap.context(() => {
 
             const createAnimations = () => {
-                const scroller = "#smooth-wrapper";
-
-                // Animation for text elements
-                const elementsToAnimate = gsap.utils.toArray(sectionEl.querySelectorAll('.anim-child'));
-                gsap.from(elementsToAnimate, {
-                    opacity: 0, y: 30, stagger: 0.2,
-                    scrollTrigger: {
-                        //scroller: scroller,
-                        trigger: sectionEl,
-                        start: "top 60%",
-                        toggleActions: "play none none none",
-                    }
-                });
-
-                // Video Scrub Animation
+                {/* Video Scrub Animation */}
                 const videoEl = videoRef.current;
                 if (videoEl) {
                     videoEl.currentTime = 0;
                     ScrollTrigger.create({
-                        //scroller: scroller,
                         trigger: sectionEl,
                         start: "top top",
                         end: "bottom bottom",
@@ -76,10 +68,9 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
                     });
                 }
 
-                // Trigger for scene completion
+                {/* Trigger for scene completion */}
                 if (!isInteractive) {
                     ScrollTrigger.create({
-                        //scroller: scroller,
                         trigger: sectionEl,
                         start: "top -150%",
                         onEnter: () => onSceneComplete(id),
@@ -87,70 +78,7 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
                     })
                 }
 
-                // Animation for narrative texts
-                const narrativeContainer = sectionEl.querySelector("#narrative-scroll-container");
-                const narrativeTexts = sectionEl.querySelector("#narrative-texts");
-
-                if (narrativeContainer && narrativeTexts) {
-                    const containerHeight = narrativeContainer.clientHeight;
-                    const textHeight = narrativeTexts.clientHeight;
-
-                    if (textHeight > containerHeight) {
-                        gsap.to(narrativeTexts, {
-                            y: -(textHeight - containerHeight),
-                            ease: "none",
-                            scrollTrigger: {
-                                //scroller: scroller,
-                                trigger: sectionEl,
-                                start: "top top",
-                                end: "bottom bottom",
-                                scrub: true,
-                            }
-                        });
-                    }
-                }
-
-                // animation for dialogue texts
-                /*const dialogueContainer = sectionEl.querySelector('.dialogue-container');
-                if (dialogueContainer) {
-                    const lines = gsap.utils.toArray<HTMLElement>(dialogueContainer.querySelectorAll('.dialogue-line'));
-                    const decisionContainer = sectionEl.querySelector('.decision-block-container');
-
-                    if (lines.length > 0) {
-                        gsap.set(lines[0], { opacity: 1 });
-
-                        const tl = gsap.timeline({
-                            scrollTrigger: {
-                                //scroller: scroller,
-                                trigger: sectionEl,
-                                pin: true,
-                                pinReparent: true,
-                                anticipatePin: 1,
-                                scrub: 1,
-                                start: "top top",
-                                end: `+=${lines.length * 150}%`,
-                            }
-                        });
-
-                        lines.forEach((line, index) => {
-                            if (index === 0) return;
-
-                            const prevLine = lines[index - 1];
-
-                            tl.to(prevLine, { opacity: 0 }, `+=${index * 0.1}`)
-                                .to(line, { opacity: 1 });
-                        });
-
-                        if (decisionContainer) {
-                            gsap.set(decisionContainer, { autoAlpha: 0 });
-
-                            tl.to(lines[lines.length -1], { opacity: 0 }, "+=1")
-                            .to(decisionContainer, { autoAlpha: 1 });
-                        }
-                    }
-                }*/
-
-                // new dialogue animation
+                {/* Animation for dialogue blocks */}
                 if (layout === 'dialogue') {
                     const steps = gsap.utils.toArray<HTMLElement>(sectionEl.querySelectorAll('.dialogue-step'))
 
@@ -212,14 +140,46 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
                     }
                 }
 
-                // animation for buttons
+                {/* Animation for text elements */}
+                const elementsToAnimate = gsap.utils.toArray(sectionEl.querySelectorAll('.anim-child'));
+                gsap.from(elementsToAnimate, {
+                    opacity: 0, y: 30, stagger: 0.2,
+                    scrollTrigger: {
+                        trigger: sectionEl,
+                        start: "top 60%",
+                        toggleActions: "play none none none",
+                    }
+                });
+
+                {/* Animation for narrative texts */}
+                const narrativeContainer = sectionEl.querySelector("#narrative-scroll-container");
+                const narrativeTexts = sectionEl.querySelector("#narrative-texts");
+
+                if (narrativeContainer && narrativeTexts) {
+                    const containerHeight = narrativeContainer.clientHeight;
+                    const textHeight = narrativeTexts.clientHeight;
+
+                    if (textHeight > containerHeight) {
+                        gsap.to(narrativeTexts, {
+                            y: -(textHeight - containerHeight),
+                            ease: "none",
+                            scrollTrigger: {
+                                trigger: sectionEl,
+                                start: "top top",
+                                end: "bottom bottom",
+                                scrub: true,
+                            }
+                        });
+                    }
+                }
+
+                {/* Animation for buttons */}
                 if (interactiveBlocks.length > 0) {
                     const elementsToAnimate = gsap.utils.toArray(sectionEl.querySelectorAll('.anim-interactive'));
                     if (elementsToAnimate.length > 0) {
                         gsap.set(elementsToAnimate, { opacity: 0, y: 20 });
 
                         ScrollTrigger.create({
-                            //scroller: scroller,
                             trigger: sectionEl,
                             start: "top -180%",
                             onEnter: () => gsap.to(elementsToAnimate, {
@@ -235,6 +195,7 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
                 }
             };
 
+            {/* Video-Ready-Check */}
             const videoEl = videoRef.current;
             if (videoEl) {
                 if (videoEl.readyState >= 2) {
@@ -252,13 +213,9 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
             clearTimeout(animationTimeout);
         };
         
-    }, [video, isInteractive, onSceneComplete, id]);
+    }, [video, isInteractive, onSceneComplete, id, layout]);
 
-    // separate content blocks
-    const infoBlock = content.find(block => block?.type === 'info');
-    const investigationBlock = content.find(block => block.type === 'investigation');
-    const dialogueBlock = content.find(block => block?.type === 'dialogue');
-
+    {/* Separation of content blocks */}
     const otherContent = content.filter(block => block.type !== 'investigation' && block.type !== 'info' && block.type !== 'dialogue');
 
     const textBlocks = otherContent.filter(
@@ -362,25 +319,6 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
                             </div>
                         )}
                     </div>
-
-                    {/*{/* dialogue text layer 
-                    {dialogueBlock && dialogueBlock.type === 'dialogue' && (
-                        <div className="dialogue-container absolute bottom-0 left-0 right-0 p-8 md:p-12 pointer-events-none">
-                            {dialogueBlock.lines.map((line, index) => (
-                                <div
-                                    key={index}
-                                    className={`dialogue-line absolute bottom-8 md:bottom-12 left-8 right-8 md:left-12 md:right-12 flex opacity-0 pointer-events-auto ${line.align === 'left' ? 'justify-start' : 'justify-end'}`}
-                                >
-                                    <div className="max-w-prose w-full">
-                                        <DialogueBlockView line={line} />
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    )}*/}
-
-                    
-
                 </div>
 
                 {/* UI Title Banner */}
@@ -393,6 +331,7 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
         );
     }
 
+    {/* default layout */}
     return (
         <section
             ref={sectionRef}
@@ -455,7 +394,7 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
 
                 {/* interaction layer */}
                 {interactiveBlocks.length > 0 && (
-                    <div className="interactive-container absolute bottom-10 left-0 right-0 p-8 md:p-12 pointer-events-none">
+                    <div className="interactive-container absolute bottom-10 left-0 right-0 p-8 md:p-12 pointer-events-none z-20">
                         <div className="max-w-prose mx-auto">
                             <div className="anim-container w-full space-y-4 text-white pointer-events-auto">
                                 {interactiveBlocks.map((block, index) => {
@@ -476,7 +415,7 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
 
                 {/* UI Title Banner */}
                 {showTitleBanner && (
-                    <div className="title-banner z-10">
+                    <div className="title-banner z-10 sticky">
                         <h3>{title}</h3>
                     </div>
                 )}

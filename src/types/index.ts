@@ -44,7 +44,8 @@ export type Hotspot = {
 export type NavigationBlock = {
     type : 'navigation';
     buttonText: string;
-    targetSceneId: string;
+    targetSceneId?: string;
+    targetChapterId?: string;
 }
 
 export type nullBlock = {

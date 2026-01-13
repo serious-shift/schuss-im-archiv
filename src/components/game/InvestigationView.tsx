@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { InvestigationBlock, Hotspot as HotspotType } from '@/src/types';
 import Hotspot from './Hotspot';
 import ClueDetail from './ClueDetail';
-import Image from 'next/image';
+import NavigationBlockView from './NavigationBlockView';
 
 type InvestigationViewProps = {
     block: InvestigationBlock;
@@ -67,17 +67,6 @@ export default function InvestigationView({ block, onComplete }: InvestigationVi
                     hotspot={selectedHotspot}
                     onClose={handleCloseDetail}
                 />
-            )}
-
-            {isCompleted && (
-                <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20">
-                    <button
-                        onClick={onComplete}
-                        className="bg-red-700 hover:bg-red-800 text-white font-bold py-3 px-8 rounded-lg text-lg transition-transform duration-300 hover:scale-105"
-                    >
-                        Ermittlung abschließen
-                    </button>
-                </div>
             )}
         </div>
     );
