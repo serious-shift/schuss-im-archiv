@@ -73,6 +73,7 @@ export type Choice = {
     targetSceneId?: string;
     targetChapterId?: string;
     image?: string;
+    followUpContent?: SceneContent[];
 };
 
 export type DecisionBlock = {

@@ -24,10 +24,11 @@ type SceneSectionProps = {
     image?: string;
     onNavigate: (targetSceneId: string) => void;
     onSceneComplete: (sceneId: string) => void;
+    onDecision: (sceneId: string, followUpContent: SceneContent[]) => void;
     layout?: 'default' | 'split-view' | 'dialogue';
 };
 
-export default function SceneSection({ title, content, showTitleBanner, id, video, image, onNavigate, onSceneComplete, layout = 'default' }: SceneSectionProps) {
+export default function SceneSection({ title, content, showTitleBanner, id, video, image, onNavigate, onSceneComplete, onDecision, layout = 'default',  }: SceneSectionProps) {
     const sectionRef = useRef<HTMLElement | null>(null);
     const videoRef = useRef<HTMLVideoElement | null>(null);
 
@@ -213,7 +214,7 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
             clearTimeout(animationTimeout);
         };
         
-    }, [video, isInteractive, onSceneComplete, id, layout]);
+    }, [video, isInteractive, onSceneComplete, id, layout, content]);
 
     {/* Separation of content blocks */}
     const otherContent = content.filter(block => block.type !== 'investigation' && block.type !== 'info' && block.type !== 'dialogue');
@@ -250,7 +251,7 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
                 {/* decision block */}
                 {decisionBlock && decisionBlock.type === 'decision' && (
                     <div className="flex-grow">
-                        <DecisionBlockView block={decisionBlock} onNavigate={onNavigate} />
+                        <DecisionBlockView block={decisionBlock} onNavigate={onNavigate} onDecision={(followUp) => onDecision(id, followUp)} />
                     </div>
                 )}
             </div>
@@ -260,15 +261,6 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
 
     {/* dialogue layout */}
     if (layout === 'dialogue') {
-        const dialogueBlock = content.find(block => block?.type === 'dialogue') as DialogueBlock | undefined;
-        const decisionBlock = content.find(block => block?.type === 'decision') as DecisionBlock | undefined;
-        const navigationBlock = content.find(block => block?.type === 'navigation') as NavigationBlock | undefined;
-
-        //const dialogueSteps = dialogueBlock ? dialogueBlock.lines.length : 0;
-        //const decisionSteps = decisionBlock ? 1 : 0;
-        //const navigationSteps = navigationBlock ? 1 : 0;
-        //const totalSteps = dialogueSteps + decisionSteps + navigationSteps;
-
         const sequenceContent = content.filter(
             block => block?.type === 'dialogue' || block?.type === 'decision' || block?.type === 'navigation'
         );
@@ -317,7 +309,7 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
                                     return (
                                         <div key={blockIndex} className="dialogue-step absolute inset-0 flex items-center justify-center p-8 md:p-12">
                                             <div className="decision-block-container w-full max-w-prose pointer-events-auto">
-                                                <DecisionBlockView block={block} onNavigate={onNavigate} />
+                                                <DecisionBlockView block={block} onNavigate={onNavigate} onDecision={(followUp) => onDecision(id, followUp)} />
                                             </div>
                                         </div>
                                     );
@@ -419,7 +411,7 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
                                     if (!block) return null;
                                     switch (block.type) {
                                         case 'decision':
-                                            return <DecisionBlockView key={index} block={block} onNavigate={onNavigate} />;
+                                            return <DecisionBlockView key={index} block={block} onNavigate={onNavigate} onDecision={(followUp) => onDecision(id, followUp)} />;
                                         case 'navigation':
                                             return <NavigationBlockView key={index} block={block} onNavigate={onNavigate} />;
                                         default:

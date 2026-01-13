@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { Chapter, Scene } from "@/src/types";
+import { Chapter, Scene, SceneContent } from "@/src/types";
 import { useIsomorphicLayoutEffect } from "@/src/lib/useIsomorphicLayoutEffect";
 import SceneSection from "@/src/components/SceneSection";
 import gsap from "gsap";
@@ -46,6 +46,25 @@ export default function ChapterClient({ chapterData }: ChapterClientProps) {
             setVisibleScenes([chapterData.scenes[0]]);
         }
     }, [chapterData]);
+
+    const handleDecision = useCallback((sceneId: string, followUpContent: SceneContent[]) => {
+        setVisibleScenes(prevScenes =>
+            prevScenes.map(scene => {
+                if (scene.id === sceneId) {
+                    const decisionBlockIndex = scene.content.findIndex(block => block.type === 'decision');
+                    if (decisionBlockIndex !== -1) {
+                        const newContent = [...scene.content];
+                        newContent.splice(decisionBlockIndex, 1, ...followUpContent);
+                        return {
+                            ...scene,
+                            content: newContent,
+                        };
+                    }
+                }
+                return scene;
+            })
+        );
+    }, []);
 
     const handleNavigate = useCallback((targetSceneId: string) => {
         // Find the next scene in the entire chapter data
@@ -116,6 +135,7 @@ export default function ChapterClient({ chapterData }: ChapterClientProps) {
                     image={scene.image}
                     onNavigate={handleNavigate}
                     onSceneComplete={handleSceneComplete}
+                    onDecision={handleDecision}
                     layout={scene.layout}
                 />
             ))}

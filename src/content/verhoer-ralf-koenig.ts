@@ -77,15 +77,78 @@ export const verhoerRalfKoenigChapter: Chapter = {
                 choices: [
                     {
                         text: "Würden Sie sich bereit erklären, uns Ihr Handy zu geben? Wir lassen beide Geräte forensisch untersuchen.",
-                        targetSceneId: "scene-2-path-c-q1"
+                        followUpContent: [
+                          {
+                              type: 'dialogue',
+                              lines: [
+                                  {
+                                      character: "Ermittler:in",
+                                      text: "Würden Sie sich bereit erklären, uns Ihr Handy zu geben? Wir lassen beide Geräte forensisch untersuchen.",
+                                      align: 'left',
+                                  },
+                                  {
+                                      character: "Ralf König",
+                                      text: "Natürlich. Ich habe nichts zu verbergen. Nehmen Sie’s – checken Sie, wann ich was aufgenommen habe. Das Original klingt völlig anders, da bin ich mir sicher.",
+                                      align: 'right',
+                                  }
+                              ]
+                          },
+                          {
+                              type: 'navigation',
+                              buttonText: "Weiter",
+                              targetSceneId: "scene-2-path-c-decision"
+                          }
+                        ]
                     },
                     {
                         text: "Herr König, welche Themen decken Sie aktuell in Ihrer journalistischen Arbeit ab?",
-                        targetSceneId: "scene-2-path-c-q2"
+                        followUpContent: [
+                          {
+                              type: 'dialogue',
+                              lines: [
+                                  {
+                                      character: "Ermittler:in",
+                                      text: "Herr König, welche Themen decken Sie aktuell in Ihrer journalistischen Arbeit ab?",
+                                      align: 'left',
+                                  },
+                                  {
+                                      character: "Ralf König",
+                                      text: "Vor allem politische Verflechtungen, Parteispenden, intransparente Förderstrukturen. Das Archiv war da eine wichtige Quelle – und Heller manchmal mein Türöffner.",
+                                      align: 'right',
+                                  }
+                              ]
+                          },
+                          {
+                              type: 'navigation',
+                              buttonText: "Weiter",
+                              targetSceneId: "scene-2-path-c-decision"
+                          }
+                        ]
                     },
                     {
                         text: "Wissen Sie noch, was genau Sie Heller in Ihrer Sprachnachricht sagen wollten – also im Original?",
-                        targetSceneId: "scene-2-path-c-q3"
+                        followUpContent: [
+                          {
+                              type: 'dialogue',
+                              lines: [
+                                  {
+                                      character: "Ermittler:in",
+                                      text: "Wissen Sie noch, was genau Sie Heller in Ihrer Sprachnachricht sagen wollten – also im Original?",
+                                      align: 'left',
+                                  },
+                                  {
+                                      character: "Ralf König",
+                                      text: "Ja. Ich hab gesagt, dass ich draußen warte und mich auf den Abend freue. Dass er sich nicht stressen soll, falls er noch in einem Gespräch steckt. Ganz neutral. Keine Anspielungen, kein Druck. Es war einfach eine nette Nachricht. Und ich weiß, dass sie harmlos war. Ich hab sie vor dem Absenden sogar nochmal angehört – aus Routine.",
+                                      align: 'right',
+                                  }
+                              ]
+                          },
+                          {
+                              type: 'navigation',
+                              buttonText: "Weiter",
+                              targetSceneId: "scene-2-path-c-decision"
+                          }
+                        ]
                     },
                 ]
             }

@@ -1,12 +1,13 @@
-import { DecisionBlock, Choice } from '@/src/types';
+import { DecisionBlock, Choice, SceneContent } from '@/src/types';
 import { useRouter } from 'next/navigation';
 
 type DecisionBlockViewProps = {
     block: DecisionBlock;
     onNavigate: (targetSceneId: string) => void;
+    onDecision?: (followUpContent: SceneContent[]) => void;
 };
 
-export default function DecisionBlockView({ block, onNavigate }: DecisionBlockViewProps) {
+export default function DecisionBlockView({ block, onNavigate, onDecision }: DecisionBlockViewProps) {
     const router = useRouter();
 
     const handleChoiceClick = (choice: Choice) => {
@@ -14,6 +15,8 @@ export default function DecisionBlockView({ block, onNavigate }: DecisionBlockVi
             router.push(`/chapter/${choice.targetChapterId}`);
         } else if (choice.targetSceneId) {
             onNavigate(choice.targetSceneId);
+        } else if (choice.followUpContent && onDecision) {
+            onDecision(choice.followUpContent);
         } else {
             console.warn('Choice has no targetSceneId or targetChapterId:', choice);
             return;
