@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useVisitedChapters } from "@/src/lib/useVisitedChapters";
 
 type ConditionalNavigationProps = {
-  checkChapterId: string;
+  checkChapterId: string | string[];
   targetChapterId_ifTrue: string;
   targetChapterId_ifFalse: string;
 };
@@ -20,8 +20,10 @@ export function ConditionalNavigation({
 
   useEffect(() => {
     if (visitedChapters.length > 0) {
-      const hasVisited = visitedChapters.includes(checkChapterId);
-      if (hasVisited) {
+      const idsToCheck = Array.isArray(checkChapterId) ? checkChapterId : [checkChapterId];
+      const hasVisitedAny = idsToCheck.some(id => visitedChapters.includes(id));
+
+      if (hasVisitedAny) {
         router.replace(`/chapter/${targetChapterId_ifTrue}`);
       } else {
         router.replace(`/chapter/${targetChapterId_ifFalse}`);

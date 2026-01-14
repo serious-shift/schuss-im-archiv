@@ -31,7 +31,7 @@ export const untersuchungDerArchivzugaengeChapter: Chapter = {
                 {
                     type: "navigation",
                     buttonText: "Weiter",
-                    targetChapterId: "-"
+                    targetChapterId: "archivzugang-router"
                 }
             ]
         }
