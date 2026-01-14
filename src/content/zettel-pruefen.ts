@@ -27,6 +27,7 @@ export const zettelPruefenChapter: Chapter = {
         id: "scene-2-b-a-dialogue",
         title: "Verhör: Lena Bergmann (Praktikantin)",
         layout: "dialogue",
+        image: "/images/interrogations/Lena-Bergmann-sitzend.png",
         showTitleBanner: true,
         content: [
             {

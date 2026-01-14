@@ -28,7 +28,7 @@ export const untersuchungBueroHaasChapter: Chapter = {
                     choices: [
                         {
                             text: "➜ Du lässt den Stick unter Laborbedingungen auslesen – in der Hoffnung, neue digitale Spuren zu finden.",
-                            targetChapterId: "-"
+                            targetChapterId: "usb-stick-analyse"
                         },
                         {
                             text: "➜ Du gibst die Nummer in eine Waffen-Datenbank ein – vielleicht führt sie zur Registrierung der Tatwaffe und zu einem eindeutigen Besitzer.",
