@@ -8,7 +8,7 @@ export const finaleRalfKoenigChapter: Chapter = {
       id: "szene-xxx-ralf",
       title: "Festnahme: Ralf Koenig",
       layout: "dialogue",
-      image: "/images/scene-xxx/ralf/XXX-verhoerszene-ralf-koenig-1.png",
+      image: "/schuss-im-archiv/images/scene-xxx/ralf/XXX-verhoerszene-ralf-koenig-1.png",
       content: [
         {
           type: "dialogue",
@@ -151,7 +151,7 @@ export const finaleRalfKoenigChapter: Chapter = {
         id: "szene-xxx-ralf-festnahme",
         title: "Festnahme: Ralf Koenig",
         layout: "dialogue",
-        image: "/images/scene-xxx/ralf/XXX-verhoerszene-ralf-koenig-2.png",
+        image: "/schuss-im-archiv/images/scene-xxx/ralf/XXX-verhoerszene-ralf-koenig-2.png",
         content: [
             {
                 type: "dialogue",
@@ -174,7 +174,7 @@ export const finaleRalfKoenigChapter: Chapter = {
         id: "szene-xxx-ralf-abfuhr",
         title: "Festnahme: Ralf Koenig",
         layout: "default",
-        image: "/images/scene-xxx/ralf/XXX-verhoerszene-ralf-koenig-4.png",
+        image: "/schuss-im-archiv/images/scene-xxx/ralf/XXX-verhoerszene-ralf-koenig-4.png",
         content: [
             {
                 type: "nullBlock",

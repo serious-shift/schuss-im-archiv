@@ -8,7 +8,7 @@ export const waffenboxPruefenChapter: Chapter = {
       id: "scene-5-a-a-b",
       title: "Artikelnummer recherchieren",
       showTitleBanner: true,
-      image: "/images/scene-5/5AAB-Artikelnummer-recherchieren-ohne-Text.png",
+      image: "/schuss-im-archiv/images/scene-5/5AAB-Artikelnummer-recherchieren-ohne-Text.png",
       layout: "sequential",
       content: [
         {
@@ -45,7 +45,7 @@ export const waffenboxPruefenChapter: Chapter = {
     {
         id: "scene-6-a-a-b",
         title: "Schwarzmarkt Munition",
-        image: "/images/scene-6/6AAB-Schwarzmaerkten-Munition.png",
+        image: "/schuss-im-archiv/images/scene-6/6AAB-Schwarzmaerkten-Munition.png",
         layout: "default",
         content: [
             {
@@ -62,7 +62,7 @@ export const waffenboxPruefenChapter: Chapter = {
         id: "scene-7-a-a-b",
         title: "Verhör: Dr. Petra Haas (Kollegin)",
         showTitleBanner: true,
-        image: "/images/interrogations/Dr-Petra-Haas-sitzend.png",
+        image: "/schuss-im-archiv/images/interrogations/Dr-Petra-Haas-sitzend.png",
         layout: "dialogue",
         content: [
             {
@@ -132,7 +132,7 @@ export const waffenboxPruefenChapter: Chapter = {
     {
         id: "scene-8-a-a-b",
         title: "Patronenhülse wird analysiert",
-        image: "/images/scene-8/8AAB-Patronenhuelse-wird-analysiert.png",
+        image: "/schuss-im-archiv/images/scene-8/8AAB-Patronenhuelse-wird-analysiert.png",
         layout: "default",
         content: [
             {

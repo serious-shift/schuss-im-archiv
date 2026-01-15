@@ -9,7 +9,7 @@ export const zeugenbefragungChapter: Chapter = {
       title: "Zeugenbefragung",
       showTitleBanner: true,
       layout: "dialogue",
-      image: "/images/scene-5/5AA-Zeugenbefragung.png",
+      image: "/schuss-im-archiv/images/scene-5/5AA-Zeugenbefragung.png",
       content: [
         {
           type: "dialogue",
@@ -58,7 +58,7 @@ export const zeugenbefragungChapter: Chapter = {
         },
         {
             type: "chat",
-            phoneImage: "/images/investigationAssets/Handy-front_prop.png",
+            phoneImage: "/schuss-im-archiv/images/investigationAssets/Handy-front_prop.png",
             messages: [
                 { id: "1", sender: "Lena", text: "Bin gerade los, Bus kommt in 2 Minuten.", time: "15:01 Uhr" },
                 { id: "2", sender: "Sarah", text: "Ich bin schon da, steh vorm Eingang.", time: "15:02 Uhr" },
@@ -86,7 +86,7 @@ export const zeugenbefragungChapter: Chapter = {
         id: "scene-6-a-a-1",
         title: "Fitnessstudio Kameras",
         layout: "default",
-        image: "/images/scene-6/6AA-Fitnessstudio-Kameras-Hintergrund.png",
+        image: "/schuss-im-archiv/images/scene-6/6AA-Fitnessstudio-Kameras-Hintergrund.png",
         content: [
             {
                 type: 'narrative',
@@ -97,7 +97,7 @@ export const zeugenbefragungChapter: Chapter = {
     {
         id: "scene-6-a-a-2",
         title: "Fitnessstudio Kamera 1",
-        video: "/videos/6AA-Fitnessstudiokameras-Video-1-Eingang-clean.mp4",
+        video: "/schuss-im-archiv/videos/6AA-Fitnessstudiokameras-Video-1-Eingang-clean.mp4",
         content: [
             {
                 type: 'nullBlock'
@@ -107,7 +107,7 @@ export const zeugenbefragungChapter: Chapter = {
     {
         id: "scene-6-a-a-3",
         title: "Fitnessstudio Kamera 2",
-        video: "/videos/6AA-Fitnessstudiokameras-Video-2-Laufband-clean.mp4",
+        video: "/schuss-im-archiv/videos/6AA-Fitnessstudiokameras-Video-2-Laufband-clean.mp4",
         content: [
             {
                 type: 'nullBlock'
@@ -117,7 +117,7 @@ export const zeugenbefragungChapter: Chapter = {
     {
         id: "scene-6-a-a-4",
         title: "Fitnessstudio Kamera 3",
-        video: "/videos/6AA-Fitnessstudiokameras-Video-3-Ausgang-clean.mp4",
+        video: "/schuss-im-archiv/videos/6AA-Fitnessstudiokameras-Video-3-Ausgang-clean.mp4",
         content: [
             {
                 type: 'nullBlock'
@@ -128,7 +128,7 @@ export const zeugenbefragungChapter: Chapter = {
         id: "scene-6-a-a-5",
         title: "Fitnessstudio Kameras",
         layout: "sequential",
-        image: "/images/scene-6/6AA-Fitnessstudio-Kameras-Hintergrund.png",
+        image: "/schuss-im-archiv/images/scene-6/6AA-Fitnessstudio-Kameras-Hintergrund.png",
         content: [
             {
                 type: 'narrative',

@@ -9,7 +9,7 @@ export const tonspurPruefenChapter: Chapter = {
       title: "Tonspur prüfen lassen",
       showTitleBanner: true,
       layout: "default",
-      image: "/images/scene-3/3CA-Tonspur-pruefen-lassen-mit-Text.png",
+      image: "/schuss-im-archiv/images/scene-3/3CA-Tonspur-pruefen-lassen-mit-Text.png",
       content: [
         {
           type: "narrative",

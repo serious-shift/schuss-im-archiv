@@ -8,7 +8,7 @@ export const befragungPetraHaasChapter: Chapter = {
       id: "scene-5-c-a-a-a",
       title: "Befragung: Dr. Petra Haas",
       layout: "dialogue",
-      image: '/images/interrogations/Dr-Petra-Haas-sitzend.png',
+      image: '/schuss-im-archiv/images/interrogations/Dr-Petra-Haas-sitzend.png',
       showTitleBanner: true,
       content: [
         {

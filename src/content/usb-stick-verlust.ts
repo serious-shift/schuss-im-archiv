@@ -9,7 +9,7 @@ export const usbStickVerlustChapter: Chapter = {
       title: "Der USB-Stick ist verschwunden",
       showTitleBanner: true,
       layout: "sequential",
-      image: "/images/scene-5/5CABB-Der-USB-Stick-ist-verschwunden.png",
+      image: "/schuss-im-archiv/images/scene-5/5CABB-Der-USB-Stick-ist-verschwunden.png",
       content: [
         {
           type: "narrative",

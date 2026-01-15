@@ -7,7 +7,7 @@ export const zettelPruefenChapter: Chapter = {
     {
       id: "scene-2-b-a",
       title: "Forensische Untersuchung: Zettel",
-      image: "/images/scene-2/2BA-forensische-untersuchung-1.png",
+      image: "/schuss-im-archiv/images/scene-2/2BA-forensische-untersuchung-1.png",
       layout: "default",
       showTitleBanner: true,
       content: [
@@ -19,7 +19,7 @@ export const zettelPruefenChapter: Chapter = {
     {
       id: "scene-2-b-a-2",
       title: "Forensische Untersuchung: Zettel",
-      image: "/images/scene-2/2BA-forensische-untersuchung-2.png",
+      image: "/schuss-im-archiv/images/scene-2/2BA-forensische-untersuchung-2.png",
       layout: "default",
       content: [
         {
@@ -40,7 +40,7 @@ export const zettelPruefenChapter: Chapter = {
         id: "scene-2-b-a-dialogue",
         title: "Verhör: Lena Bergmann (Praktikantin)",
         layout: "dialogue",
-        image: "/images/interrogations/Lena-Bergmann-sitzend.png",
+        image: "/schuss-im-archiv/images/interrogations/Lena-Bergmann-sitzend.png",
         showTitleBanner: true,
         content: [
             {
@@ -114,7 +114,7 @@ export const zettelPruefenChapter: Chapter = {
       id: "scene-2-b-a-conclusion",
       title: "Hellers Unterlagen durchsuchen",
       layout: "default",
-      image: "/images/scene-2/2B-Entscheidung-aus-dem-verhoerraum.png",
+      image: "/schuss-im-archiv/images/scene-2/2B-Entscheidung-aus-dem-verhoerraum.png",
       content: [
         {
           type: "narrative",

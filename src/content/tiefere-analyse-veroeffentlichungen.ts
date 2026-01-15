@@ -7,7 +7,7 @@ export const tiefereAnalyseVeroeffentlichungenChapter: Chapter = {
     {
         id: "scene-5-c-b-b-analyse",
         title: "Tiefere Analyse Veröffentlichungen",
-        image: "/images/scene-5/5CBB-tiefere-analyse-Veroeffentlichungen.png",
+        image: "/schuss-im-archiv/images/scene-5/5CBB-tiefere-analyse-Veroeffentlichungen.png",
         showTitleBanner: true,
         content: [
             {
@@ -29,7 +29,7 @@ export const tiefereAnalyseVeroeffentlichungenChapter: Chapter = {
         id: "scene-6-c-b-b-info",
         title: "Ein Zeuge meldet sich",
         showTitleBanner: true,
-        image: "/images/scene-6/6CBB-info.png",
+        image: "/schuss-im-archiv/images/scene-6/6CBB-info.png",
         content: [
             {
                 type: 'narrative',
@@ -47,7 +47,7 @@ export const tiefereAnalyseVeroeffentlichungenChapter: Chapter = {
         id: "scene-7-c-b-b-könig",
         title: "Trugschluss – Alles spricht gegen König",
         showTitleBanner: true,
-        image: "/images/scene-7/7CBB-Spendenaffäre-im-Staatsdienst.png",
+        image: "/schuss-im-archiv/images/scene-7/7CBB-Spendenaffäre-im-Staatsdienst.png",
         content: [
             {
                 type: 'narrative',

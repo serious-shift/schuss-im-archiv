@@ -7,7 +7,7 @@ export const verhoerRalfKoenigChapter: Chapter = {
     {
         id: "scene-2-c",
         title: "Verhör: Ralf König (Freund & Journalist)",
-        image: '/images/interrogations/Ralf-König-sitzend-verhörraum.png',
+        image: '/schuss-im-archiv/images/interrogations/Ralf-König-sitzend-verhörraum.png',
         layout: 'dialogue',
         showTitleBanner: true,
         content: [
@@ -44,7 +44,7 @@ export const verhoerRalfKoenigChapter: Chapter = {
             {
                 type: 'audio',
                 audioSrc: '/audios/msg_koenig_final.mp3',
-                coverImage: '/images/investigationAssets/Handy-front_prop.png',
+                coverImage: '/schuss-im-archiv/images/investigationAssets/Handy-front_prop.png',
             },
             {
                 type: 'dialogue',
@@ -153,6 +153,7 @@ export const verhoerRalfKoenigChapter: Chapter = {
         id: "scene-2-path-c-decision",
         title: "Glauben schenken oder nicht?",
         showTitleBanner: true,
+        image: "/schuss-im-archiv/images/interrogations/Ralf-Koenig-stehend-verhoerraum.png",
         content: [
             {
                 type: 'decision',

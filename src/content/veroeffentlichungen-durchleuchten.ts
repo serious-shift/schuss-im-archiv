@@ -7,7 +7,7 @@ export const veroeffentlichungenDurchleuchtenChapter: Chapter = {
     {
         id: "scene-3-c-b-veröffentlichungen-durchleuchten",
         title: "Recherche zu Ralf Königs Veröffentlichungen",
-        image: "/images/scene-5/5CBB-verdeckte-geldfluesse-heller-wankt.png",
+        image: "/schuss-im-archiv/images/scene-5/5CBB-verdeckte-geldfluesse-heller-wankt.png",
         showTitleBanner: true,
         content: [
             {
@@ -30,7 +30,7 @@ export const veroeffentlichungenDurchleuchtenChapter: Chapter = {
         id: "scene-4-c-b-dialogue",
         title: "Verhör: Ralf König (Freund & Journalist) II",
         showTitleBanner: true,
-        image: '/images/interrogations/Ralf-König-sitzend-verhörraum.png',
+        image: '/schuss-im-archiv/images/interrogations/Ralf-König-sitzend-verhörraum.png',
         layout: 'dialogue',
         content: [
             {
@@ -125,7 +125,7 @@ export const veroeffentlichungenDurchleuchtenChapter: Chapter = {
     {
         id: "scene-4-c-b-decision",
         title: "Und was jetzt?",
-        image: "/images/interrogations/Ralf-Koenig-stehend-verhoerraum.png",
+        image: "/schuss-im-archiv/images/interrogations/Ralf-Koenig-stehend-verhoerraum.png",
         content: [
             {
                 type: 'info',

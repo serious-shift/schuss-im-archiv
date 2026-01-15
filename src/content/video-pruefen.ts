@@ -9,7 +9,7 @@ export const videoPruefenChapter: Chapter = {
       title: "Video forensisch prüfen",
       showTitleBanner: true,
       layout: "default",
-      image: "/images/scene-7/7AAB-video-forensisch-pruefen.png",
+      image: "/schuss-im-archiv/images/scene-7/7AAB-video-forensisch-pruefen.png",
       content: [
         {
           type: "narrative",
@@ -34,7 +34,7 @@ export const videoPruefenChapter: Chapter = {
         id: "scene-7-a-a-b-1",
         title: "Fitness IT-Abteilung befragen",
         showTitleBanner: true,
-        video: "/videos/scene-0-1-police_car_pov-clean.mp4",
+        video: "/schuss-im-archiv/videos/scene-0-1-police_car_pov-clean.mp4",
         content: [
             {
                 type: 'narrative',
@@ -50,7 +50,7 @@ export const videoPruefenChapter: Chapter = {
         title: "Befragung: IT-Techniker Braun",
         showTitleBanner: true,
         layout: "dialogue",
-        image: "/images/scene-8/8AAB-it-techniker-braun.png",
+        image: "/schuss-im-archiv/images/scene-8/8AAB-it-techniker-braun.png",
         content: [
             {
                 type: 'dialogue',
@@ -108,7 +108,7 @@ export const videoPruefenChapter: Chapter = {
         title: "Verhör II: Lena Bergmann (Praktikantin)",
         showTitleBanner: true,
         layout: "dialogue",
-        image: "/images/interrogations/Lena-Bergmann-sitzend.png",
+        image: "/schuss-im-archiv/images/interrogations/Lena-Bergmann-sitzend.png",
         content: [
             {
                 type: 'dialogue',
@@ -180,7 +180,7 @@ export const videoPruefenChapter: Chapter = {
         title: "Verhör II: Dr. Petra Haas (Kollegin)",
         showTitleBanner: true,
         layout: "dialogue",
-        image: "/images/interrogations/Dr-Petra-Haas-sitzend.png",
+        image: "/schuss-im-archiv/images/interrogations/Dr-Petra-Haas-sitzend.png",
         content: [
             {
                 type: 'dialogue',

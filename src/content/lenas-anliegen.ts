@@ -8,7 +8,7 @@ export const lenasAnliegenChapter: Chapter = {
       id: "scene-3-b-b",
       title: "Lenas Anliegen",
       layout: "dialogue",
-      image: "/images/scene-3/3BB-Lenas-anliegen.png",
+      image: "/schuss-im-archiv/images/scene-3/3BB-Lenas-anliegen.png",
       content: [
         {
           type: "dialogue",

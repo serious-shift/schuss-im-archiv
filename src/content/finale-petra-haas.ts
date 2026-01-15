@@ -8,7 +8,7 @@ export const finalePetraHaasChapter: Chapter = {
       id: "szene-xxx-petra",
       title: "Festnahme: Dr. Petra Haas",
       layout: "dialogue",
-      image: "/images/scene-xxx/petra/XXX-verhoerszene-haas-7.png",
+      image: "/schuss-im-archiv/images/scene-xxx/petra/XXX-verhoerszene-haas-7.png",
       content: [
         {
           type: "dialogue",
@@ -186,7 +186,7 @@ export const finalePetraHaasChapter: Chapter = {
         id: "szene-xxx-petra-festnahme",
         title: "Festnahme: Petra Haas",
         layout: "dialogue",
-        image: "/images/scene-xxx/petra/XXX-verhoerszene-haas-3.png",
+        image: "/schuss-im-archiv/images/scene-xxx/petra/XXX-verhoerszene-haas-3.png",
         content: [
             {
                 type: "dialogue",
@@ -204,7 +204,7 @@ export const finalePetraHaasChapter: Chapter = {
         id: "szene-xxx-petra-abfuhr",
         title: "Festnahme: Dr. Petra Haas",
         layout: "default",
-        image: "/images/scene-xxx/petra/XXX-verhoerszene-haas-5.png",
+        image: "/schuss-im-archiv/images/scene-xxx/petra/XXX-verhoerszene-haas-5.png",
         content: [
             {
                 type: "nullBlock",

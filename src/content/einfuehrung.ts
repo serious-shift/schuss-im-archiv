@@ -8,7 +8,7 @@ export const einfuehrungChapter: Chapter = {
             id: "scene-0",
             title: "Rolle als Ermittler:in",
             showTitleBanner: true,
-            video: "/videos/Szene-0-Transition-clean.mp4",
+            video: "/schuss-im-archiv/videos/Szene-0-Transition-clean.mp4",
             content: [
                 {
                     type: 'narrative',
@@ -28,7 +28,7 @@ export const einfuehrungChapter: Chapter = {
         {
             id: "scene-0-1",
             title: "Fahrt zum Tatort",
-            video: "/videos/scene-0-1-police_car_pov-clean.mp4",
+            video: "/schuss-im-archiv/videos/scene-0-1-police_car_pov-clean.mp4",
             content: [
                 {
                     type: 'nullBlock'
@@ -42,13 +42,13 @@ export const einfuehrungChapter: Chapter = {
             content: [
                 {
                     type: 'investigation',
-                    backgroundImage: '/images/investigation_tatort.png',
+                    backgroundImage: '/schuss-im-archiv/images/investigation_tatort.png',
                     hotspots: [
                         {
                             id: 'hint-1',
                             title: 'Patronenhülse',
                             description: 'Ein kalter Boden. Neben Dr. Heller finden Sie nur eine einzelne Patronenhülse – Kaliber 9mm. Die Waffe selbst wurde mitgenommen. Es war ein sauberer Schuss aus nächster Nähe.',
-                            image: '/images/investigationAssets/huelse.png',
+                            image: '/schuss-im-archiv/images/investigationAssets/huelse.png',
                             required: false,
                             position: { x: 40, y: 84 },
                             //rotation: -40,
@@ -61,7 +61,7 @@ export const einfuehrungChapter: Chapter = {
                             id: 'hint-2',
                             title: 'Zeitstempel',
                             description: 'Hellers Armbanduhr liegt mit gesprungenem Glas am Boden. Sie ist stehen geblieben um 19:21 Uhr. Vermutlich die Zeit des Schusses.',
-                            image: '/images/investigationAssets/Watch.png',
+                            image: '/schuss-im-archiv/images/investigationAssets/Watch.png',
                             required: false,
                             position: { x: 76, y: 82 },
                             rotation: -105,
@@ -71,7 +71,7 @@ export const einfuehrungChapter: Chapter = {
                             id: 'hint-3',
                             title: 'DNA-Spur',
                             description: 'Die Spurensicherung war bereits vor Ort und konnte eine DNA Spur in Form einer Haares an Hellers Ärmel sicherstellen.',
-                            image: '/images/investigationAssets/Haar_prop.png',
+                            image: '/schuss-im-archiv/images/investigationAssets/Haar_prop.png',
                             required: false,
                             position: { x: 56, y: 80 },
                             scale: 2,
@@ -82,7 +82,7 @@ export const einfuehrungChapter: Chapter = {
                             id: 'hint-4',
                             title: 'Papier Spur',
                             description: ' Hellers Schreibtisch ist aufgeräumt. Nur eine Spendenliste sticht heraus - neben ihr ein zerknüllter Zettel. Er trägt die klare Handschrift einer anderen Person.',
-                            image: '/images/investigationAssets/Papierspur-detail_prop.png',  
+                            image: '/schuss-im-archiv/images/investigationAssets/Papierspur-detail_prop.png',  
                             required: false,
                             position: { x: 68, y: 52.5 },
                             rotateX: -70,
@@ -93,11 +93,11 @@ export const einfuehrungChapter: Chapter = {
                             id: 'hint-5',
                             title: 'Wiederhergestellte Audioaufnahme',
                             description: ' Die Spurensicherung konnte eine gelöschte Audio-Datei von Hellers Handy wiederherstellen. Sie hören ein lautes, emotionales Streitgespräch mit dem Journalisten Ralf König. ',
-                            image: '/images/investigationAssets/Handy-front_prop.png',
+                            image: '/schuss-im-archiv/images/investigationAssets/Handy-front_prop.png',
                             audio: {
                                 type: 'audio',
-                                audioSrc: '/audios/msg_koenig_final.mp3',
-                                coverImage: '/images/investigationAssets/Handy-front_prop.png',
+                                audioSrc: '/schuss-im-archiv/audios/msg_koenig_final.mp3',
+                                coverImage: '/schuss-im-archiv/images/investigationAssets/Handy-front_prop.png',
                             },
                             required: false,
                             position: { x: 84, y: 74 },

@@ -8,7 +8,7 @@ export const erneuteUntersuchungDerArchivzugaengeChapter: Chapter = {
             id: "scene-4-a-b",
             title: "Archivzugänge neu prüfen",
             layout: "sequential",
-            image: "/images/scene-3/3A-Untersuchung-der-Archivzugaenge.png",
+            image: "/schuss-im-archiv/images/scene-3/3A-Untersuchung-der-Archivzugaenge.png",
             showTitleBanner: true,
             content: [
                 {
@@ -38,7 +38,7 @@ export const erneuteUntersuchungDerArchivzugaengeChapter: Chapter = {
         {
             id: "scene-4-a-b-interrogation",
             title: "Verhör: Lena Bergmann (Praktikantin)",
-            image: "/images/interrogations/Lena-Bergmann-sitzend.png",
+            image: "/schuss-im-archiv/images/interrogations/Lena-Bergmann-sitzend.png",
             layout: "dialogue",
             showTitleBanner: true,
             content: [

@@ -9,7 +9,7 @@ export const untersuchungDerArchivzugaengeChapter: Chapter = {
             title: "Untersuchung der Archivzugänge",
             layout: "sequential",
             showTitleBanner: true,
-            image: "/images/scene-3/3A-Untersuchung-der-Archivzugaenge.png",
+            image: "/schuss-im-archiv/images/scene-3/3A-Untersuchung-der-Archivzugaenge.png",
             content: [
                 {
                     type: "narrative",

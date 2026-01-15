@@ -8,7 +8,7 @@ export const untersuchungBueroHaasChapter: Chapter = {
             id: "scene-4-a-a",
             title: "Büro von Dr. Petra Haas untersuchen",
             showTitleBanner: true,
-            image: "/images/scene-4/4AA-Buero-von-haas-durchsuchen.png",
+            image: "/schuss-im-archiv/images/scene-4/4AA-Buero-von-haas-durchsuchen.png",
             layout: "sequential",
             content: [
                 {
@@ -38,12 +38,12 @@ export const untersuchungBueroHaasChapter: Chapter = {
                         {
                             text: "➜ Du lässt den Stick unter Laborbedingungen auslesen – in der Hoffnung, neue digitale Spuren zu finden.",
                             targetChapterId: "usb-stick-analyse",
-                            image: "/images/scene-4/4AA-Entscheidung-USB-Stick.png"
+                            image: "/schuss-im-archiv/images/scene-4/4AA-Entscheidung-USB-Stick.png"
                         },
                         {
                             text: "➜ Du gibst die Nummer in eine Waffen-Datenbank ein – vielleicht führt sie zur Registrierung der Tatwaffe und zu einem eindeutigen Besitzer.",
                             targetChapterId: "waffenbox-pruefen",
-                            image: "/images/scene-4/4AA-Entscheidung-Barcode.png",
+                            image: "/schuss-im-archiv/images/scene-4/4AA-Entscheidung-Barcode.png",
                         }
                     ],
                     displayAs: 'decision',

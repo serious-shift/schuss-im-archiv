@@ -8,7 +8,7 @@ export const finaleEntscheidungChapter: Chapter = {
       id: "scene-xxx",
       title: "Finale Entscheidung",
       layout: "default",
-      image: "/images/scene-xxx/XXX-finale-entscheidung.png",
+      image: "/schuss-im-archiv/images/scene-xxx/XXX-finale-entscheidung.png",
       content: [
         {
           type: "decision",

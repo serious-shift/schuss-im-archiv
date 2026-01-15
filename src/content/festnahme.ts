@@ -16,17 +16,17 @@ export const festnahmeChapter: Chapter = {
               {
                   text: "Dr. Petra Haas",
                   targetChapterId: "finale-petra-haas",
-                  image: '/images/scene-xxx/XXX-festnahme-petra-haas.png' 
+                  image: '/schuss-im-archiv/images/scene-xxx/XXX-festnahme-petra-haas.png' 
               },
               {
                   text: "Lena Bergmann",
                   targetChapterId: "finale-lena-bergmann",
-                  image: '/images/scene-xxx/XXX-festnahme-lena-bergmann.png'
+                  image: '/schuss-im-archiv/images/scene-xxx/XXX-festnahme-lena-bergmann.png'
               },
               {
                   text: "Ralf König",
                   targetChapterId: "finale-ralf-koenig",
-                  image: '/images/scene-xxx/XXX-festnahme-ralf-könig.png',
+                  image: '/schuss-im-archiv/images/scene-xxx/XXX-festnahme-ralf-könig.png',
 
               }
           ],

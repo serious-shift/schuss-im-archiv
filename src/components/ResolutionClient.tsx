@@ -67,7 +67,7 @@ const CREDITS_DATA = [
         names: ["dim5 Interactive Storytelling"]
     },
     {
-        role: "Besonderer Dank an die Dozenten",
+        role: "Hochschule Mainz - Dozenten",
         names: ["Alexander Rossner", "Jens Friederich"]
     }
 ];
@@ -92,7 +92,7 @@ export default function ResolutionClient() {
     // State für gefundene Szenen (aus LocalStorage)
     const [visitedScenes, setVisitedScenes] = useState<Set<string>>(new Set());
 
-    const backgroundImage = "/images/scene-xxx/XXX-bg.png";
+    const backgroundImage = "/schuss-im-archiv/images/scene-xxx/XXX-bg.png";
 
     useEffect(() => {
         const storedScenes = localStorage.getItem('visitedChapters');

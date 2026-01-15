@@ -8,7 +8,7 @@ export const finaleLenaBergmannChapter: Chapter = {
       id: "szene-xxx-lena",
       title: "Festnahme: Lena Bergmann",
       layout: "dialogue",
-      image: "/images/scene-xxx/lena/XXX-verhoerszene-Lena-2.png",
+      image: "/schuss-im-archiv/images/scene-xxx/lena/XXX-verhoerszene-Lena-2.png",
       content: [
         {
           type: "dialogue",
@@ -151,7 +151,7 @@ export const finaleLenaBergmannChapter: Chapter = {
         id: "szene-xxx-lena-festnahme",
         title: "Festnahme: Lena Bergmann",
         layout: "dialogue",
-        image: "/images/scene-xxx/lena/XXX-verhoerszene-Lena-3.png",
+        image: "/schuss-im-archiv/images/scene-xxx/lena/XXX-verhoerszene-Lena-3.png",
         content: [
             {
                 type: "dialogue",
@@ -174,7 +174,7 @@ export const finaleLenaBergmannChapter: Chapter = {
         id: "szene-xxx-lena-abfuhr",
         title: "Festnahme: Lena Bergmann",
         layout: "default",
-        image: "/images/scene-xxx/lena/XXX-verhoerszene-Lena-5.png",
+        image: "/schuss-im-archiv/images/scene-xxx/lena/XXX-verhoerszene-Lena-5.png",
         content: [
             {
                 type: "nullBlock",

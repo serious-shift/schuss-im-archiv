@@ -7,7 +7,7 @@ export const verhoerPetraHaasChapter: Chapter = {
     {
       id: "szene-2-a",
       title: "Verhör: Dr. Petra Haas (Kollegin)",
-      image: '/images/interrogations/Dr-Petra-Haas-sitzend.png',
+      image: '/schuss-im-archiv/images/interrogations/Dr-Petra-Haas-sitzend.png',
       layout: "dialogue",
       showTitleBanner: true,
       content: [

@@ -8,7 +8,7 @@ export const konfrontationLenaBergmannChapter: Chapter = {
       id: "scene-7-a-b-a",
       title: "Verhör: Lena Bergmann",
       layout: "dialogue",
-      image: "/images/interrogations/Lena-Bergmann-sitzend.png",
+      image: "/schuss-im-archiv/images/interrogations/Lena-Bergmann-sitzend.png",
       showTitleBanner: true,
       content: [
         {

@@ -7,7 +7,7 @@ export const verhoerLenaBergmannChapter: Chapter = {
     {
       id: "szene-2-b",
       title: "Verhör: Lena Bergmann (Praktikantin)",
-      image: '/images/interrogations/Lena-Bergmann-sitzend.png',
+      image: '/schuss-im-archiv/images/interrogations/Lena-Bergmann-sitzend.png',
       layout: "dialogue",
       showTitleBanner: true,
       content: [
@@ -299,7 +299,7 @@ export const verhoerLenaBergmannChapter: Chapter = {
     {
         id: "scene-2-b-decision",
         title: "Glauben schenken oder nicht?",
-        image: "/images/scene-2/2B-Entscheidung-aus-dem-verhoerraum.png",
+        image: "/schuss-im-archiv/images/scene-2/2B-Entscheidung-aus-dem-verhoerraum.png",
         layout: "sequential",
         content: [
           {

@@ -9,7 +9,7 @@ export const spurensicherungAdminStationChapter: Chapter = {
       title: "Spurensicherung: Admin-Station",
       layout: "default",
       showTitleBanner: true,
-      image: "/images/scene-5/5CAA-Spurensicherung–Admin-Station-zusammen.png",
+      image: "/schuss-im-archiv/images/scene-5/5CAA-Spurensicherung–Admin-Station-zusammen.png",
       content: [
         {
           type: "narrative",
@@ -24,7 +24,7 @@ export const spurensicherungAdminStationChapter: Chapter = {
         content: [
             {
                 type: "investigation",
-                backgroundImage: '/images/scene-5/5CAA-Spurensicherung–Admin-Station-Hintergrund.png',
+                backgroundImage: '/schuss-im-archiv/images/scene-5/5CAA-Spurensicherung–Admin-Station-Hintergrund.png',
                 showInternalButton: true,
                 navigation: {
                     type : 'navigation',
@@ -36,7 +36,7 @@ export const spurensicherungAdminStationChapter: Chapter = {
                         id: 'hint-1',
                         title: 'Bildschirm',
                         description: 'Eher unwahrscheinlich. Bildschirme werden selten direkt berührt – Fingerabdrücke sind hier selten und meist unvollständig.',
-                        image: '/images/investigationAssets/5CAA-Spurensicherung–Admin-Station-Bildschirm-n.png',
+                        image: '/schuss-im-archiv/images/investigationAssets/5CAA-Spurensicherung–Admin-Station-Bildschirm-n.png',
                         required: false,
                         position: { x: 80, y: 50 },
                         scale: 5,
@@ -45,7 +45,7 @@ export const spurensicherungAdminStationChapter: Chapter = {
                         id: 'hint-2',
                         title: 'Maus',
                         description: 'Möglich, aber wenig präzise. Die Maus wird zwar oft genutzt, liefert aber meist unscharfe oder überlagerte Spuren.',
-                        image: '/images/investigationAssets/5CAA-Spurensicherung–Admin-Station-Maus-n.png',
+                        image: '/schuss-im-archiv/images/investigationAssets/5CAA-Spurensicherung–Admin-Station-Maus-n.png',
                         required: false,
                         position: { x: 92, y: 80 },
                         scale: 3.5,
@@ -54,7 +54,7 @@ export const spurensicherungAdminStationChapter: Chapter = {
                         id: 'hint-3',
                         title: 'Tastatur',
                         description: 'Sehr wahrscheinlich! Besonders häufig genutzte Tasten können gut erhaltene, verwertbare Fingerabdrücke liefern – vor allem bei gezielten Eingaben.',
-                        image: '/images/investigationAssets/5CAA-Spurensicherung–Admin-Station-Tastatur-n.png',
+                        image: '/schuss-im-archiv/images/investigationAssets/5CAA-Spurensicherung–Admin-Station-Tastatur-n.png',
                         required: true,
                         position: { x: 66, y: 80 },
                         scale: 6,
@@ -67,7 +67,7 @@ export const spurensicherungAdminStationChapter: Chapter = {
         id: "scene-5-c-a-a-conclusion",
         title: "Ergebnisse der Spurensicherung",
         showTitleBanner: true,
-        image: "/images/investigationAssets/5CAA-entscheidung.png",
+        image: "/schuss-im-archiv/images/investigationAssets/5CAA-entscheidung.png",
         layout: "sequential",
         content: [
             {
