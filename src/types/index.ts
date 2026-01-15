@@ -39,6 +39,7 @@ export type ChatMessage = {
     id: string;
     sender: 'Lena' | 'Sarah';
     text: string;
+    time: string;
 }
 
 export type AudioBlock = {
