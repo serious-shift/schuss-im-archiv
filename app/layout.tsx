@@ -1,9 +1,8 @@
-/** Haupt-Layout der gesamten App */
-
 import type { Metadata } from "next";
+import GlobalLoader from "@/src/components/GlobalLoader";
+import SmoothScroller from "@/src/components/layout/SmoothScroller";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import SmoothScroller from "@/src/components/layout/SmoothScroller";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,12 +25,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="de">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SmoothScroller />
-        {children}
+        <GlobalLoader>
+          <SmoothScroller />
+          {children}
+        </GlobalLoader>
       </body>
     </html>
   );
