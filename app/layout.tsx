@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import GlobalLoader from "@/src/components/GlobalLoader";
 import SmoothScroller from "@/src/components/layout/SmoothScroller";
 import { Geist, Geist_Mono } from "next/font/google";
+import GameMenu from "@/src/components/ui/GameMenu";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -31,6 +32,7 @@ export default function RootLayout({
       >
         <GlobalLoader>
           <SmoothScroller />
+          <GameMenu />
           {children}
         </GlobalLoader>
       </body>

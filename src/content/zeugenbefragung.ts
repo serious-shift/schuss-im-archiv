@@ -147,7 +147,7 @@ export const zeugenbefragungChapter: Chapter = {
                 choices: [
                     {
                         text: "→ Sie konfrontieren Lena Bergmann mit den Aufnahmen. Wie wird sie auf den offensichtlichen Widerspruch reagieren?",
-                        title: "lena zur Diskrepanz konfrontieren",
+                        title: "Lena zur Diskrepanz konfrontieren",
                         targetChapterId: "konfrontation-lena-bergmann"
                     },
                     {
