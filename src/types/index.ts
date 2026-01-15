@@ -61,7 +61,7 @@ export type Hotspot = {
     id: string;
     title: string;
     description: string;
-    image?: string;
+    image: string;
     required: boolean;
     audio? : AudioBlock;
     position: {
