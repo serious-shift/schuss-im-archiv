@@ -8,7 +8,7 @@ export const untersuchungDesAlibisChapter: Chapter = {
       id: "scene-4-a",
       title: "Untersuchung des Alibis",
       image: "/images/interrogations/Lena-Bergmann-stehend.png",
-      layout: "default",
+      layout: "sequential",
       content: [
         {
           type: "narrative",

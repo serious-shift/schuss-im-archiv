@@ -12,6 +12,7 @@ import InfoBlockView from "./game/InfoBlockView";
 import AnalysisBlockView from "./game/AnalysisBlockView";
 import { AudioBlockView } from "./game/AudioBlockView";
 import { ChatBlockView } from './game/ChatBlockView';
+import ScrollHint from "@/src/components/ui/ScrollHint";
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -373,6 +374,7 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
             className="relative"
             style={{ height: `${sectionHeight}vh`, minHeight: '300vh' }}
             >
+                <ScrollHint />
                 <div className="sticky top-0 h-screen w-full overflow-hidden bg-black">
                     {/* background-layer */}
                     {image && (
@@ -484,6 +486,7 @@ export default function SceneSection({ title, content, showTitleBanner, id, vide
             id={id}
             className="relative h-[300vh]"
         >
+            <ScrollHint />
             <div className="sticky top-0 h-screen w-full overflow-hidden">
                 
                 {/* background-layer */}

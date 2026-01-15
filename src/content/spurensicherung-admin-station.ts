@@ -56,7 +56,7 @@ export const spurensicherungAdminStationChapter: Chapter = {
                         description: 'Sehr wahrscheinlich! Besonders häufig genutzte Tasten können gut erhaltene, verwertbare Fingerabdrücke liefern – vor allem bei gezielten Eingaben.',
                         image: '/images/investigationAssets/5CAA-Spurensicherung–Admin-Station-Tastatur-n.png',
                         required: true,
-                        position: { x: 68, y: 80 },
+                        position: { x: 66, y: 80 },
                         scale: 6,
                     },
                 ]
